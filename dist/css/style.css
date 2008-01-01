@@ -124,13 +124,12 @@ nav ul.today_and_this_week {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 0.5rem;
+  padding: 0.25rem 0 0.5rem 0
 }
 
 nav ul.today_and_this_week > li {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0rem;
   border-radius: 0.75rem;
 }
 
@@ -142,6 +141,40 @@ nav ul.today_and_this_week > li > p:active {
   text-decoration: 2px underline rebeccapurple;
 }
 
+button.today_button {
+  display: flex;
+  align-items: center;
+  border: none;
+  width: 100%;
+  background-color: white;
+}
+
+button.date_range_button {
+  display: flex;
+  align-items: center;
+  border: none;
+  width: 100%;
+  background-color: white;
+}
+
+button.date_range_button:hover {
+  background-color: #00000015;
+  
+}
+
+button.date_range_button:active {
+  background-color: #00000030;
+}
+
+button.today_button:hover {
+  background-color: #00000015;
+}
+
+button.today_button:active {
+  background-color: #00000030;
+}
+
+
 nav ul > li > img {
   padding: 0 0.5rem;
 }
@@ -151,19 +184,27 @@ ul.projects {
   flex-direction: column;
 }
 
-ul.projects > li:nth-child(2):hover {
-  text-decoration: 2px underline blue;
-}
-
-ul.projects > li:nth-child(2):active {
-  text-decoration: 2px underline rebeccapurple;
-}
-
 ul.projects > li:nth-child(2) {
   display: flex;
   align-items: center;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+button.add_project_button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  border: none;
+}
+
+button.add_project_button:hover {
+  background-color: #00000015;
+}
+
+button.add_project_button:active {
+  background-color: #00000030;
 }
 
 ul.projects > li:nth-child(1) h3 {
