@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="45mm"
+   height="45mm"
+   viewBox="0 0 45 45"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed, 2023-07-21)"
+   sodipodi:docname="todo_logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="2.5650675"
+     inkscape:cx="80.894556"
+     inkscape:cy="87.911915"
+     inkscape:window-width="1366"
+     inkscape:window-height="708"
+     inkscape:window-x="-1"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#000000;stroke:#020101;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-opacity:0.975328"
+       id="rect2"
+       width="31.75"
+       height="31.75"
+       x="6.8132272"
+       y="6.6531925"
+       rx="3.6419034"
+       ry="3.3562307" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#fefcfc;stroke-width:3.1;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.975328"
+       d="M 11.363782,25.052632 18.646743,31.939938 33.344559,17.392344 18.681256,32.109682 Z"
+       id="path2" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Bitstream Vera Sans';-inkscape-font-specification:'Bitstream Vera Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:#fefcfc;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.975328"
+       x="9.6196146"
+       y="16.767588"
+       id="text2"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Bitstream Vera Sans';-inkscape-font-specification:'Bitstream Vera Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583;stroke-dasharray:none"
+         x="9.6196146"
+         y="16.767588">todo</tspan></text>
+  </g>
+</svg>
