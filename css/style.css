@@ -1,0 +1,195 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+  v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* downloaded fonts */
+@font-face {
+  font-family: 'roboto-regular';
+  src: url(../font/roboto/Roboto-Regular.ttf);
+}
+
+/* start styling */
+body {
+  background-color: white;
+  font-family: 'roboto-regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 1fr 8fr;
+  min-height: 100vh;
+  max-height: 200dvh;
+}
+
+header {
+  grid-column: 1 / 6;
+}
+
+main {
+  grid-row: 2 / 3;
+  grid-column: 1 / 6;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #00000015;
+  box-shadow: 0 0 10px 10px #00000015;
+  padding: 0.125rem 1rem;
+  position: static;
+  z-index: 99;
+  background-color: #b7fff5;
+}
+
+header h2 {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-family: 'roboto-regular', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header img:first-child {
+  margin: 2px;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+header img:first-child:hover {
+  background-color: #00000015;
+}
+
+header img:first-child:active {
+  background-color: #00000030;
+}
+
+header img:nth-child(2) {
+  width: 50px;
+  padding: 0px 0.2rem 0 0.9rem;
+
+}
+
+main {
+  background-color: #8bf7ff;
+  display: flex;
+}
+
+div.context_content {
+  flex: 6;
+  position: static;
+  z-index: 97;
+}
+
+aside {
+  flex: 1 4 10px;
+  background-color: #3affb3;
+  border-right: 2px solid #00000015;
+  box-shadow: 0px 0px 10px 5px #00000030;
+  position: static;
+  z-index: 98;
+  padding: 1rem;
+}
+
+nav ul:first-child {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #00000080;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+}
+
+nav ul:first-child > li {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0rem;
+  border-radius: 0.75rem;
+}
+
+nav ul:first-child > li:hover {
+  padding: 0.75rem 0rem;
+  background-color: #80808040;
+}
+
+nav ul:first-child > li:active {
+  padding: 0.75rem 0rem;
+  background-color: #80808080;
+}
+
+nav ul > li img {
+  padding: 0 0.5rem;
+}
+
+ul.projects {
+  display: flex;
+  flex-direction: column;
+}
+
+ul.projects > li:nth-child(2):hover {
+  background-color: #00000020;
+}
+
+ul.projects > li:nth-child(2):active {
+  background-color: #00000040;
+}
+
+ul.projects > li:nth-child(2) {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+ul.projects > li:nth-child(1) h3 {
+  font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+h1.current_sidebar_content {
+  background-color: aqua;
+  padding: 0.5rem 1rem;
+  font-size: clamp(1rem, 5vw, 2rem);
+  position: static;
+  border-bottom: 2px solid #00000015;
+  box-shadow: 0 0 6px 4px #00000015;
+}
