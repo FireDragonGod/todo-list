@@ -130,7 +130,7 @@ aside {
   padding: 1rem;
 }
 
-nav ul:first-child {
+nav ul.today_and_this_week {
   margin-bottom: 1rem;
   border-bottom: 2px solid #00000080;
   display: flex;
@@ -139,19 +139,19 @@ nav ul:first-child {
   padding-bottom: 0.5rem;
 }
 
-nav ul:first-child > li {
+nav ul.today_and_this_week > li {
   display: flex;
   align-items: center;
   padding: 0.75rem 0rem;
   border-radius: 0.75rem;
 }
 
-nav ul:first-child > li:hover {
+nav ul.today_and_this_week > li:hover {
   padding: 0.75rem 0rem;
   background-color: #80808040;
 }
 
-nav ul:first-child > li:active {
+nav ul.today_and_this_week > li:active {
   padding: 0.75rem 0rem;
   background-color: #80808080;
 }
@@ -192,4 +192,67 @@ h1.current_sidebar_content {
   position: static;
   border-bottom: 2px solid #00000015;
   box-shadow: 0 0 6px 4px #00000015;
+}
+
+ul.projects li:nth-child(2).hide {
+  position: absolute;
+  scale: 0;
+}
+
+.formList > form > ul > li:first-child {
+  padding: 0.25rem 0;
+  display: grid;
+}
+
+.formList > form > ul {
+  padding: 0.25rem 0;
+  gap: 0.25rem;
+  display: grid;
+  grid-template: 'input input'
+                'button button1';
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #00000080;
+}
+
+.formList > form > ul > li:first-child {
+  grid-area: input;
+}
+
+.formList > form > ul > li:nth-child(2) {
+  grid-area: button;
+  display: grid;
+}
+
+.formList > form > ul > li:nth-child(3) {
+  grid-area: button1;
+  display: grid;
+}
+
+
+input#project_name {
+  border-radius: 0.25rem;
+  border-color: white;
+  padding: 0.10rem;
+  font-size: clamp(0.75rem, 4vw, 1rem);
+}
+
+li.label_input {
+  display: grid;
+  row-gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+button {
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.5rem;
+  border-color: lightgreen;
+}
+
+form > ul > li > button[type='submit'] {
+  background-color: #00000015;
+}
+
+form > ul > li > button {
+  background-color: orange;
 }
