@@ -42,13 +42,40 @@
           <li>
             <h3>Projects</h3>
           </li>
-          <li>
+          <li class="add_project">
             <img
             src="img/add_FILL0_wght400_GRAD0_opsz24.svg"
             alt="add"
-            >
-              <p>Add Project</p>
+            class="add_project">
+              <p class="add_project">Add Project</p>
             </li>
+            <li class="formList hide">
+              <form 
+              method="get" 
+              action=""
+              >
+                <ul>
+                  <li class="label_input">
+                    <label for="project_name">Project Name</label>
+                    <input type="text" 
+                    id="project_name" 
+                    name="project_name" 
+                    minlength="3" 
+                    maxlength="60" 
+                    required
+                    >
+                    </li>
+                    <li>
+                      <button type="submit" 
+                      class="save"
+                      >Save</button>
+                    </li>
+                    <li>
+                      <button class="cancel">Cancel</button>
+                    </li>
+                  </ul>
+                </form>
+              </li>
         </ul>
       </nav>
     </aside>
