@@ -1,21 +1,27 @@
-import moreVert from './more_vert_FILL0_wght400_GRAD0_opsz24.svg'; 
+import moreVert from './assets/more_vert_FILL0_wght400_GRAD0_opsz24.svg'; 
 
-export class ListOfProject {
-  li = document.createElement('li');
-  h3 = document.createElement('h3')
-  
+class ListOfProject {
+
   AppendListChildren(
     projectName, 
     dataKey
   ) {
+
+    const li = document.createElement('li');
+    const h3 = document.createElement('h3');
+    const imgWrapper = document.createElement('div');
+
     let moreVertical = new Image();
     moreVertical.src = moreVert;
 
-    this.h3.textContent = `${projectName}`;
+    li.classList.add('project-list');
+
+    h3.textContent = `${projectName}`;
     
     const elements = [
-      this.li,
-      this.h3,
+      li,
+      h3,
+      imgWrapper,
       moreVertical,
     ];
 
@@ -23,17 +29,22 @@ export class ListOfProject {
       element.setAttribute(
         'data-key',
         `${dataKey}`
-      )
+      );
     });
 
+    imgWrapper.appendChild(moreVertical);
+
     const listChildren = [
-      this.h3,
-      moreVertical
+      h3,
+      imgWrapper,
     ];
 
     listChildren.forEach((element) => {
-      this.li.appendChild(element);
+      li.appendChild(element);
     });
-    return this.li
+
+    return li
   };
 };
+
+export const ListOfProjectForDom = new ListOfProject();
