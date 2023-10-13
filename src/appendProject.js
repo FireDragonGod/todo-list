@@ -1,5 +1,39 @@
 import moreVert from './assets/more_vert_FILL0_wght400_GRAD0_opsz24.svg'; 
 
+class RemoveElement {
+  static removeAnElement(element) {
+    element.remove();
+  };
+};
+
+class ChangeTitle {};
+
+class MoreVertical {
+  
+  createMoreVerticalInfo(event) {
+    const moreVerticalWrapper = document.createElement('div');
+    const edit = document.createElement('p');
+    const remove = document.createElement('p');
+
+    edit.textContent = 'edit';
+    remove.textContent = 'remove';
+
+    edit.classList.add('edit');
+    remove.classList.add('remove');
+    moreVerticalWrapper.classList.add('more_vert_wrapper');
+
+    [
+      edit, 
+      remove
+    ].forEach(
+      (element) => {
+      moreVerticalWrapper.appendChild(element);
+    });
+
+    return moreVerticalWrapper;
+  };
+};
+
 class ListOfProject {
 
   AppendListChildren(
@@ -10,6 +44,8 @@ class ListOfProject {
     const li = document.createElement('li');
     const h3 = document.createElement('h3');
     const imgWrapper = document.createElement('div');
+    const moreVerticalInformation = new MoreVertical();
+    const vertWrapper = moreVerticalInformation.createMoreVerticalInfo();
 
     let moreVertical = new Image();
     moreVertical.src = moreVert;
@@ -37,6 +73,7 @@ class ListOfProject {
     const listChildren = [
       h3,
       imgWrapper,
+      vertWrapper,
     ];
 
     listChildren.forEach((element) => {
