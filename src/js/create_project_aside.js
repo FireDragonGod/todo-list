@@ -1,3 +1,6 @@
+import { formToRenameProject } from './form_rename';
+import { moreVertical } from './more_vertical_img';
+
 class ListOfProject {
 
   AppendListChildren(
@@ -26,6 +29,8 @@ class ListOfProject {
 
     const listChildren = [
       h3,
+      moreVertical.appendThisToListOfProject(dataKey),
+      formToRenameProject.editProjectNameWithThisForm(dataKey),
     ];
 
     listChildren.forEach((element) => {
