@@ -6,9 +6,10 @@ class Today {
     const task = document.createElement('div');
 
     h1.textContent = 'Today';
-    h1.setAttribute('data-today', '');
+    h1.setAttribute('data-today', `${dataToday}`);
     task.setAttribute('id', 'data-today');
-    wrapper.setAttribute('data-today', '');
+    wrapper.setAttribute('data-today', `${dataToday}`);
+    wrapper.setAttribute('class', ``);
     
     const childrenElements = [
       h1,
