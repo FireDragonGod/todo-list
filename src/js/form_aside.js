@@ -4,7 +4,7 @@ const elementPreventdefault = function preventAnElementByPassingAnElementToThisF
   event.preventDefault();
 };
 
-const elementToggler = function toggleTwoElementsWhenYouNeedToHideOrShowAnElementIfOneElementIsHidden(
+export const elementToggler = function toggleTwoElementsWhenYouNeedToHideOrShowAnElementIfOneElementIsHidden(
   element,
   secondElement
 ) {
