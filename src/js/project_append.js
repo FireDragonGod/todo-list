@@ -35,6 +35,19 @@ class AppendingChildrenWithConditional {
       );
     }
   };
+
+  appenddingNew = function appendObjectIfTheValueIsGreaterThanOrEqualToFour(
+    parent,
+    object,
+    valueLength,
+  ) {
+    if (valueLength >= 4) {
+      return parentAppendFunctionValue(
+        parent,
+        object
+      )
+    }
+  };
 };
 
 export const conditionAppending = new AppendingChildrenWithConditional();
