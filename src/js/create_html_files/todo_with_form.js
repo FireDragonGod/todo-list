@@ -75,7 +75,7 @@ class ProjectOnTheMainContent {
     const dueDate = document.createElement('input');
     const submit = document.createElement('button');
   
-    labelTitle.textContent = 'What to do?';
+    labelTitle.textContent = 'Title: ';
     labelTitle.setAttribute('for', 'task_name');
     title.setAttribute('type', 'text');
     title.setAttribute('name', 'task_name');
@@ -85,7 +85,7 @@ class ProjectOnTheMainContent {
     title.setAttribute('maxlength', '60');
     title.setAttribute('required', '');
 
-    labelDescription.textContent = 'Provide more information about the task (optional)'
+    labelDescription.textContent = 'Description: '
     labelDescription.setAttribute('for', 'task_description');
     description.setAttribute('type', 'text');
     description.setAttribute('name', 'task_description');
@@ -93,13 +93,13 @@ class ProjectOnTheMainContent {
     description.setAttribute('maxlength', '120');
     description.setAttribute('id', 'task_description');
 
-    priority.textContent = 'Priority level';
+    priority.textContent = 'Priority Level: ';
 
     labelLow.textContent = 'Low Priority'
     labelLow.setAttribute('for', 'low_priority');
     low.setAttribute('type', 'radio');
     low.setAttribute('id', 'low_priority');
-    low.setAttribute('name', 'low_priority');
+    low.setAttribute('name', 'priority_level');
     low.setAttribute('value', 'low_priority');
     low.setAttribute('checked', '');
 
@@ -107,17 +107,17 @@ class ProjectOnTheMainContent {
     labelMedium.setAttribute('for', 'medium_priority');
     medium.setAttribute('type', 'radio');
     medium.setAttribute('id', 'medium_priority');
-    medium.setAttribute('name', 'medium_priority');
+    medium.setAttribute('name', 'priority_level');
     medium.setAttribute('value', 'medium_priority');
 
     labelHigh.textContent = 'High Priority';
     labelHigh.setAttribute('for', 'high_priority');
     high.setAttribute('type', 'radio');
     high.setAttribute('id', 'high_priority');
-    high.setAttribute('name', 'high_priority');
+    high.setAttribute('name', 'priority_level');
     high.setAttribute('value', 'high_priority');
     
-    labelDueDate.textContent = 'Due Date';
+    labelDueDate.textContent = 'Due Date: ';
     labelDueDate.setAttribute('for', 'due_date');
     dueDate.setAttribute('type', 'date');
     dueDate.setAttribute('name', 'due_date');
@@ -146,6 +146,9 @@ class ProjectOnTheMainContent {
         liTitle,
         liDescription,
         liPriority,
+        liLow,
+        liMedium,
+        liHigh,
         liDueDate,
         liSubmit,
       ]
@@ -174,31 +177,10 @@ class ProjectOnTheMainContent {
       ]
     );
     
-    appendMultipleChildren(liPriority, [priority, low, labelLow, medium, labelMedium, high, labelHigh]);
-    
-    // appendMultipleChildren(
-    //   liLow, 
-    //   [
-    //     low,
-    //     labelLow, 
-    //   ]
-    // );
-
-    // appendMultipleChildren(
-    //   liMedium, 
-    //   [
-    //     medium,
-    //     labelMedium, 
-    //   ]
-    // );
-
-    // appendMultipleChildren(
-    //   liHigh, 
-    //   [
-    //     high,
-    //     labelHigh, 
-    //   ]
-    // );
+    appendMultipleChildren(liPriority, [priority]);
+    appendMultipleChildren(liLow, [low, labelLow]);
+    appendMultipleChildren(liMedium, [medium, labelMedium, ])
+    appendMultipleChildren(liHigh, [high, labelHigh, ])
 
     appendMultipleChildren(
       liSubmit, 
@@ -207,7 +189,7 @@ class ProjectOnTheMainContent {
         submit
       ]
     );
-  
+    console.log(form)
     return form;
   };
 };
