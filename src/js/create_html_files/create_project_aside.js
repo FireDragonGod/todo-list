@@ -1,4 +1,4 @@
-import { pusher } from '../create_project/arrayOfElementInStrings';
+import { pusher } from '../create_project/pusher';
 import { elementToggler } from '../create_html_files/form_aside'
 import remove from '../../assets/remove_FILL0_wght400_GRAD0_opsz24.svg';
 
