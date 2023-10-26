@@ -1,0 +1,308 @@
+li[data-key] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem;
+  padding-left: 0.5rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  border-radius: 0.75rem;
+  border: 1px solid #00000015;
+  background-color: aliceblue;
+  box-shadow: 0 0 5px 1px #00000015;
+}
+
+li[data-key]:hover {
+  background-color: #00000015;
+}
+li[data-key]:active {
+  background-color: #00000030;
+}
+
+li[data-key].project-list > img {
+  padding: 0;
+  border-radius: 50%;
+}
+
+
+li[data-key].project-list > img:hover {
+  background-color: #00000015;
+}
+
+li[data-key].project-list  > img:active {
+  background-color: #00000030;
+}
+
+li[data-key] > form > ul > li{
+  display: grid;
+  padding-bottom: 0.2rem;
+}
+
+li[data-key] > form > ul > li:nth-child(2){
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem;
+}
+
+li[data-key] > form > ul > li:nth-child(2) > button:first-child {
+  background-color: blue;
+  color: white;
+  border: none;
+}
+
+li[data-key] > form > ul > li:nth-child(2) > button:nth-child(2) {
+  background-color: yellow;
+  color: black;
+  border: none;
+}
+
+
+li[data-key] > form > ul > li:nth-child(2) > button:active {
+  background-color: #00000030;
+  color: black;
+
+}
+
+input#change_project_name {
+  border-radius: 2.25rem;
+  border-color: white;
+  box-shadow: 0 0 5px 5px #00000015;
+  border: 1px solid #0000008a;
+  padding: 0.5rem 0.5rem;
+  font-size: clamp(0.75rem, 4vw, 1rem);
+  max-width: 16ch;
+}
+
+input#change_project_name:focus-visible {
+  outline: 1px solid #0011ff80;
+}
+
+div[data-more] > button {
+  position:absolute;
+  scale: 0;
+}
+
+form[data-edit] {
+  position: absolute;
+  scale: 0;
+}
+
+div[data-more] > div:nth-child(2) {
+  border: 1px solid #00000015;
+  position: absolute;
+  bottom: 89%;
+  left: 56%;
+  background-color: white;
+  display: grid;
+  gap: 0.25rem;
+  justify-content: start;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+};
+
+div[data-more] > div:nth-child(2) > button[data-more] {
+  border-radius: 0;
+  border: 0;
+  background-color: white;
+  text-align: start;
+  border-radius: 2rem;
+  text-align: left;
+}
+
+
+button[data-more]:first-child {
+  background-color: blue;
+  color: white;
+}
+
+button[data-more]:last-child {
+  background-color: yellow;
+  color: black;
+}
+
+button[data-more]:active {
+  background-color: #00000030;
+  color: black;
+}
+
+.hide {
+  position: absolute;
+  scale: 0;
+}
+
+.show {
+  position: static;
+  scale: 1;
+}
+
+h1[data-today] {
+  background-color: white;
+  border-bottom: 1px solid #00000015;
+  box-shadow: 0 0 5px 5px #00000015;
+  padding: 1rem 0.5rem;
+  font-size: clamp(0.75rem, 5vw, 1.2rem);
+  letter-spacing: 1pt;
+  font-weight: 600;
+  color: black;
+}
+
+h1[data-this-week] {
+  background-color: white;
+  border-bottom: 1px solid #00000015;
+  box-shadow: 0 0 5px 5px #00000015;
+  padding: 1rem 0.5rem;
+  font-size: clamp(0.75rem, 5vw, 1.2rem);
+  letter-spacing: 1pt;
+  font-weight: 600;
+  color: black;
+}
+
+div[data-key] > h1 {
+  background-color: white;
+  border-bottom: 1px solid #00000015;
+  box-shadow: 0 0 5px 5px #00000015;
+  padding: 1rem 0.5rem;
+  font-size: clamp(0.75rem, 5vw, 1.2rem);
+  letter-spacing: 1pt;
+  font-weight: 600;
+  color: black;
+}
+
+div[data-key] > button:hover {
+  background-color: #00000015;
+}
+
+div[data-key] > button:active {
+  background-color: #00000030;
+}
+div[data-key] > button {
+  align-items: center;
+  background-color: white;
+  border: 0;
+  color: black;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  margin: 0.75rem;
+}
+
+form[data-key] > ul {
+  margin: 1.5rem;
+  padding: 1rem;
+  border: 2px solid #00000015;
+  border-radius: 0.75rem;
+  outline: 2px solid #00000030;
+  background-color: #eaeaea;
+  color: black;
+  max-width: 75ch;
+}
+
+input#task_name {
+  border-radius: 2.25rem;
+  border-color: white;
+  box-shadow: 0 0 5px 5px #00000015;
+  border: 1px solid #0000008a;
+  padding: 0.5rem 0.5rem;
+  font-size: clamp(0.75rem, 4vw, 1rem);
+  max-width: 30ch;
+}
+
+form[data-key] > ul > li:first-child {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+form[data-key] > ul > li > input[type='text']:focus-visible {
+  outline: 1px solid #3636ff;
+}
+
+form[data-key] > ul > li:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+form[data-key] > ul > li > textarea:focus-visible {
+  outline: 1px solid #5c5cff;
+}
+
+form[data-key] > ul > li:nth-child(3) {
+  /* display: flex; */
+  margin-bottom: 0.25rem;
+}
+
+form[data-key] > ul > li:nth-child(7) {
+  display: flex;
+  flex-direction: column;
+}
+
+form[data-key] > ul > li:first-child > label {
+  margin-bottom: 1rem;
+}
+
+form[data-key] > ul > li:nth-child(2) > label {
+  margin-bottom: 1rem;
+}
+
+form[data-key] > ul > li > textarea {
+  border-radius: 2.25rem;
+  border-color: white;
+  box-shadow: 0 0 5px 5px #00000015;
+  border: 1px solid #0000008a;
+  padding: 0.5rem 0.5rem;
+  font-size: clamp(0.75rem, 4vw, 1rem);
+  max-width: 40ch;
+  height: 10vh;
+}
+
+input[type='radio']:checked::before {
+  visibility: visible;
+}
+
+input[type='radio']::before {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  content: ' ';
+  background-color: rebeccapurple;
+  height: 8px;
+  width: 8px;
+  visibility: hidden;
+  border-radius: 50%;
+}
+input[type='radio'] {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid purple;
+  vertical-align: -4px;
+  color: red;
+  border-radius: 50%;
+  position: relative;
+}
+
+form[data-key] > ul > li:nth-child(6) {
+  margin-bottom: 1rem;
+}
+
+input[type='date'] {
+  appearance: none;
+  width: 16ch;
+  height: 2rem;
+  border-radius: 2rem;
+  padding: 0rem 0.5rem;
+  border: 1px solid #00000080;
+  box-shadow: 0 0 5px 5px #00000015;
+  margin: 0.5rem;
+}
+
+form[data-key] > ul > li > button:active {
+  outline: 2px solid #66339980;
+  outline-offset: 2px;
+  border: 2px solid blue;
+}
+
+form[data-key] > ul > li > button {
+  padding: 0.95rem 2.5rem;
+  border: 2px solid blue;
+}
