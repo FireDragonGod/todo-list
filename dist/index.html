@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo-List</title>
   <script src="bundle.js" defer></script>
+  <script src="js/time.js" defer></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -105,9 +106,21 @@
       </nav>
     </aside>
 
-    <div class="context_content">
+    <div id="context_content">
     </div>
 
   </main>
+
+  <footer>
+    <ul id="author">
+      <li class="author">Copyright &copy; 
+        <a id="time">
+        <script>
+          const fullYear = new Date().getFullYear();
+          const time = document.querySelector('#time').textContent = `${fullYear}`;
+        </script>
+      </a> Fire Dragon God</li>
+    </ul>
+  </footer>
 </body>
 </html>
