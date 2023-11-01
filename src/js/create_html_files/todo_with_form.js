@@ -1,4 +1,7 @@
 import add from '../../assets/add_FILL0_wght400_GRAD0_opsz24.svg';
+import close from '../../assets/close_FILL0_wght400_GRAD0_opsz24_copy.svg';
+import { todoCreate, todos, todoList } from '../create_todo/todo_create';
+import { appendWithObjectLengthCondition } from '../create_todo/conditional_append';
 
 class ProjectOnTheMainContent {
 
@@ -10,6 +13,7 @@ class ProjectOnTheMainContent {
     const projectName = document.createElement('h1');
     const todoAddButtonToShowForm = document.createElement('button');
     const addImg = new Image();
+    const todoContainer = document.createElement('div');
 
     addImg.src = add;
 
@@ -32,6 +36,7 @@ class ProjectOnTheMainContent {
     projectNameWrapper.classList.add('hide');
     projectNameWrapper.appendChild(projectName);
     projectNameWrapper.appendChild(todoAddButtonToShowForm);
+    projectNameWrapper.appendChild(todoContainer);
     projectNameWrapper.appendChild(this.addTodoViaForm(dataKey));
     todoAddButtonToShowForm.appendChild(addImg);
 
@@ -47,8 +52,11 @@ class ProjectOnTheMainContent {
       `${dataKey}`
     );
 
-    form.classList.add('hide')
-  
+    form.classList.add('hide');
+
+    const liImg = document.createElement('li');
+    const closeImg = new Image();
+    closeImg.src = close;
     const liTitle = document.createElement('li');
     const liDescription = document.createElement('li');
     const liPriority = document.createElement('li');
@@ -89,9 +97,10 @@ class ProjectOnTheMainContent {
     labelDescription.setAttribute('for', 'task_description');
     description.setAttribute('type', 'text');
     description.setAttribute('name', 'task_description');
-    description.setAttribute('minlength', '30');
+    description.setAttribute('minlength', '');
     description.setAttribute('maxlength', '120');
     description.setAttribute('id', 'task_description');
+    description.setAttribute('placeholder', 'Provide more info about the task')
 
     priority.textContent = 'Priority Level: ';
 
@@ -122,19 +131,73 @@ class ProjectOnTheMainContent {
     dueDate.setAttribute('type', 'date');
     dueDate.setAttribute('name', 'due_date');
     dueDate.setAttribute('id', 'due_date');
-    dueDate.setAttribute('min', `${undefined}`);
+    dueDate.setAttribute('min', ``);
     dueDate.setAttribute('max', '2100-12-31');
-    dueDate.setAttribute('value', `${new Date()}`);
+    dueDate.setAttribute('value', `2023-12-31`);
 
     labelSubmit.setAttribute('for', 'submit_todo');
     submit.textContent = 'Submit'
     submit.setAttribute('id', 'submit_todo');
     submit.setAttribute('name', 'submit_todo');
     submit.setAttribute('type', 'submit');
+
+    let priorityLevelStore = 'low_priority';
+
+    [
+      low,
+      medium,
+      high
+    ].forEach((element) => {
+    
+      element.addEventListener(
+        'change',
+        (event) => {
+          priorityLevelStore = event.target.value;
+        }
+      )
+    })
+
+    submit.addEventListener(
+      'click',
+      (event) => {
+        const justBelowTheButton = document.querySelector(`div[data-key="${dataKey}"] > div`);
+
+        todoCreate.addTodo(
+          title.value,
+          description.value,
+          priorityLevelStore,
+          dueDate.value,
+          todos.countTodoList(),
+        );
+
+        appendWithObjectLengthCondition.appendIfConditionWereSatisfied(
+          title.value.length,
+          justBelowTheButton, 
+          event,
+          form,
+        );
+
+        title.value = '';
+        description.value = '';
+      }
+    );
+
   
     form.appendChild(ul);
+    liImg.appendChild(closeImg);
+
+    closeImg.addEventListener(
+      'click',
+      (event) => {
+        const form = document.querySelector(`form[data-key='${dataKey}']`);
+        form.classList.toggle('hide');
+      }
+    );
     
-    function appendMultipleChildren(parent, children) {
+    function appendMultipleChildren(
+      parent, 
+      children
+    ) {
       children.forEach(child => {
         parent.appendChild(child)
       })
@@ -143,6 +206,7 @@ class ProjectOnTheMainContent {
     appendMultipleChildren(
       ul, 
       [
+        liImg,
         liTitle,
         liDescription,
         liPriority,
@@ -189,7 +253,6 @@ class ProjectOnTheMainContent {
         submit
       ]
     );
-    console.log(form)
     return form;
   };
 };
