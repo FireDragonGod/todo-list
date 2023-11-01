@@ -29,7 +29,6 @@ class TodoItem {
     const divTitle = document.createElement('div');
     const divDueDate = document.createElement('div');
     const divRemove = document.createElement('div');
-    const divExpand = document.createElement('div');
     const divEdit = document.createElement('div');
     const h2 = document.createElement('h2');
     const paraDate = document.createElement('p');
@@ -37,7 +36,6 @@ class TodoItem {
     todoItemWrapper.classList.add(`${colorCoding}`);
 
     let removeImg = new Image();
-    let expandContentImg = new Image();
     let editContent = new Image();
 
     h2.textContent = `${title}`;
@@ -59,7 +57,6 @@ class TodoItem {
     );
 
     removeImg.src = remove;
-    expandContentImg.src = expandContent;
     editContent.src = edit;
     
     todoItemWrapper.setAttribute(
@@ -122,7 +119,6 @@ class TodoItem {
         divTitle,
         divDueDate,
         divRemove,
-        divExpand,
         divEdit,
       ]
     );
