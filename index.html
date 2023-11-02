@@ -10,117 +10,101 @@
 </head>
 <body>
 
-  <header class="menu_logo_logoName">
-    <img 
-      class="todo_List_logo"
-      src="img/todo_logo.svg" 
-      alt="logo"
-    >
-    <h2 class="todo_list_name">Todo-List</h2>
-  </header>
-
-  <main class="aside_#contextContent">
-    <aside class="Today_thisWeek_addProject_projects">
-      <nav>
-
-        <ul class="today_and_this_week">
-
-          <li class="today">
-            <button class="today_button">
-              <img
-              class="today_button"
-              src="img/today_FILL0_wght400_GRAD0_opsz24.svg"
-              alt="today"
-              >
-              <p class="today_button">Today</p>
-            </button>
-          </li>
-
-          <li class="date_range">
-            <button class="date_range_button">
-              <img
-              class="date_range_button"
-              src="img/date_range_FILL0_wght400_GRAD0_opsz24.svg"
-              alt="date-range"
-              >
-              <p class="date_range_button">This Week</p>
-            </button>
-          </li>
-
-        </ul>
-
-        <ul class="projects">
-
-          <li>
-            <h3>Projects</h3>
-          </li>
-
-          <li class="add_project">
-            <button class="add_project_button">
-              <img
-              class="add_project_button"
-              src="img/add_FILL0_wght400_GRAD0_opsz24.svg"
-              alt="add"
-              >
-              <p class="add_project_button">Add Project</p>
-            </button>
-          </li>
-
-          <li class="formList hide">
-            <form 
-              method="get" 
-              action=""
-              >
-                <ul>
-
-                  <li class="label_input">
-                    <label for="project_name">Project Name</label>
-                    <input 
-                    type="text" 
-                    id="project_name" 
-                    name="project_name" 
-                    minlength="4" 
-                    maxlength="60"
-                    autocomplete="off"
-                    required
-                    >
-                  </li>
-
-                  <li>
-                      <button 
-                      type="submit" 
-                      class="save"
-                      >Save</button>
-                  </li>
-
-                  <li>
-                      <button class="cancel">Cancel</button>
-                  </li>
-
-                </ul>
-            </form>
-          </li>
-
-        </ul>
-
-      </nav>
-    </aside>
-
-    <div id="context_content">
-    </div>
-
-  </main>
-
-  <footer>
-    <ul id="author">
-      <li class="author">Copyright &copy; 
-        <a id="time">
-        <script>
-          const fullYear = new Date().getFullYear();
-          const time = document.querySelector('#time').textContent = `${fullYear}`;
-        </script>
-      </a> Fire Dragon God</li>
-    </ul>
-  </footer>
+  <div class="main_content">
+    <header class="menu_logo_logoName">
+      <img
+        class="todo_List_logo"
+        src="img/todo_logo.svg"
+        alt="logo"
+      >
+      <h2 class="todo_list_name">Todo-List</h2>
+    </header>
+    <main class="aside_#contextContent">
+      <aside class="Today_thisWeek_addProject_projects">
+        <nav>
+          <ul class="today_and_this_week">
+            <li class="today">
+              <button class="today_button">
+                <img
+                class="today_button"
+                src="img/today_FILL0_wght400_GRAD0_opsz24.svg"
+                alt="today"
+                >
+                <p class="today_button">Today</p>
+              </button>
+            </li>
+            <li class="date_range">
+              <button class="date_range_button">
+                <img
+                class="date_range_button"
+                src="img/date_range_FILL0_wght400_GRAD0_opsz24.svg"
+                alt="date-range"
+                >
+                <p class="date_range_button">This Week</p>
+              </button>
+            </li>
+          </ul>
+          <ul class="projects">
+            <li>
+              <h3>Projects</h3>
+            </li>
+            <li class="add_project">
+              <button class="add_project_button">
+                <img
+                class="add_project_button"
+                src="img/add_FILL0_wght400_GRAD0_opsz24.svg"
+                alt="add"
+                >
+                <p class="add_project_button">Add Project</p>
+              </button>
+            </li>
+            <li class="formList hide">
+              <form
+                method="get"
+                action=""
+                >
+                  <ul>
+                    <li class="label_input">
+                      <label for="project_name">Project Name</label>
+                      <input
+                      type="text"
+                      id="project_name"
+                      name="project_name"
+                      minlength="4"
+                      maxlength="60"
+                      autocomplete="off"
+                      required
+                      >
+                    </li>
+                    <li>
+                        <button
+                        type="submit"
+                        class="save"
+                        >Save</button>
+                    </li>
+                    <li>
+                        <button class="cancel">Cancel</button>
+                    </li>
+                  </ul>
+              </form>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <div id="context_content">
+      </div>
+    </main>
+    <footer>
+      <ul id="author">
+        <li class="author">Copyright &copy;
+          <a id="time">
+          <script>
+            const fullYear = new Date().getFullYear();
+            const time = document.querySelector('#time').textContent = `${fullYear}`;
+          </script>
+        </a> Fire Dragon God</li>
+      </ul>
+    </footer>
+  </div>
 </body>
 </html>
