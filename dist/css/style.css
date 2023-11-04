@@ -80,7 +80,7 @@ main {
 header {
   display: flex;
   align-items: center;
-  padding: 0.125rem 1rem;
+  padding: 1rem 1rem;
   position: static;
   background-color: white;
   border-bottom: 1px solid #00000020;
@@ -129,7 +129,6 @@ nav ul.today_and_this_week {
 nav ul.today_and_this_week > li {
   display: flex;
   align-items: center;
-  border-radius: 0.75rem;
 }
 
 nav ul.today_and_this_week > li > p:hover {
@@ -252,7 +251,6 @@ ul.projects li:nth-child(2).hide {
 
 
 input#project_name {
-  border-radius: 2.25rem;
   border-color: white;
   border: 1px solid #0000008a;
   padding: 0.5rem 0.5rem;
@@ -272,7 +270,6 @@ li.label_input {
 
 button {
   font-weight: 600;
-  border-radius: 2rem;
   padding: 0.75rem 0.5rem;
   border-color: #fff;
   border: 1px solid #00000015;
@@ -284,9 +281,9 @@ form > ul > li > button[type='submit'] {
 }
 
 form > ul > li > button[type='submit']:active {
-  background-color: #00000015;
-  color: black;
-  border: 1px solid #00000015;
+  color: blue;
+  background-color: white;
+  border: 1px solid blue;
 }
 
 form > ul > li > button {
@@ -294,9 +291,9 @@ form > ul > li > button {
 }
 
 form > ul > li > button:active {
-  background-color: #00000015;
-  color: black;
-  border: 1px solid #00000015;
+  background-color: black;
+  color: yellow;
+  border: 1px solid yellow;
 }
 
 .hide {
