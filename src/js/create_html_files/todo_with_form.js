@@ -27,8 +27,8 @@ class ProjectOnTheMainContent {
     todoAddButtonToShowForm.addEventListener(
       'click',
       (event) => {
-        const formWithDataKey = document.querySelector(`form[data-key="${dataKey}"]`);
-        formWithDataKey.classList.toggle('hide');
+        const formWithDataKey = document.querySelector(`dialog[data-key="${dataKey}"]`);
+        formWithDataKey.showModal();
       }
     );
 
@@ -44,15 +44,19 @@ class ProjectOnTheMainContent {
   };
   
   addTodoViaForm(dataKey) {
+    const dialog = document.createElement('dialog');
     const form = document.createElement('form');
     const ul = document.createElement('ul');
+
+    dialog.setAttribute(
+      'data-key',
+      `${dataKey}`
+    );
 
     form.setAttribute(
       'data-key',
       `${dataKey}`
     );
-
-    form.classList.add('hide');
 
     const liImg = document.createElement('li');
     const closeImg = new Image();
@@ -133,7 +137,7 @@ class ProjectOnTheMainContent {
     dueDate.setAttribute('id', 'due_date');
     dueDate.setAttribute('min', ``);
     dueDate.setAttribute('max', '2100-12-31');
-    dueDate.setAttribute('value', `2023-12-31`);
+    dueDate.setAttribute('value', `2023-11-06`);
 
     labelSubmit.setAttribute('for', 'submit_todo');
     submit.textContent = 'Submit'
@@ -166,7 +170,7 @@ class ProjectOnTheMainContent {
           title.value,
           description.value,
           priorityLevelStore,
-          dueDate.value,
+          dueDate.value !== '' ?  dueDate.value : '2023-11-06',
           todos.countTodoList(),
         );
 
@@ -174,23 +178,40 @@ class ProjectOnTheMainContent {
           title.value.length,
           justBelowTheButton, 
           event,
-          form,
+          dialog,
         );
 
         title.value = '';
         description.value = '';
+        dueDate.value = '2023-11-06';
+        
+        const radios = [
+          medium,
+          high,
+        ];
+
+        radios.forEach((
+          element,
+          ) => {
+            element.checked = 0;
+          }
+        );
+        
+        // default radio checked 
+        low.checked = 1;
+
       }
     );
 
-  
+    dialog.appendChild(form);
     form.appendChild(ul);
     liImg.appendChild(closeImg);
 
     closeImg.addEventListener(
       'click',
       (event) => {
-        const form = document.querySelector(`form[data-key='${dataKey}']`);
-        form.classList.toggle('hide');
+        const form = document.querySelector(`dialog[data-key='${dataKey}']`);
+        form.close();
       }
     );
     
@@ -253,7 +274,7 @@ class ProjectOnTheMainContent {
         submit
       ]
     );
-    return form;
+    return dialog;
   };
 };
 
