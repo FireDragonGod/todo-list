@@ -2,7 +2,7 @@ import { projectArr } from "./create_project";
 import { parentAppendFunctionValue } from "../create_html_files/form_aside";
 import { ListOfProjectForDom } from '../create_html_files/create_project_aside'
 
-class AppendingChildrenWithConditional {
+class  AppendingChildrenWithConditional {
 
   appendding = function AppendIfObjectLengthIsGreaterThanOrEqualToOne(
     parent,
@@ -15,8 +15,9 @@ class AppendingChildrenWithConditional {
     if (objectLength >= 1
       && minimumInputValueLength >= 4) {
 
-      const projectName = projectArr.slice(-1)[0].project;
-      const projectIndex = projectArr.slice(-1)[0].dataKey;
+      const latsProjectCreated = projectArr.length - 1;
+      const projectName = projectArr[latsProjectCreated].project;
+      const projectIndex = projectArr[latsProjectCreated].dataKey;
 
       parentAppendFunctionValue(
         parent,
