@@ -1,4 +1,4 @@
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 
 export const todoList = [];
 
@@ -30,44 +30,59 @@ class Todo {
         return 'orange';
       }
     }
-  }
+  };
 
+  checkPriority = function getPriorityToMatchWithThePriorityIfItsMatchThenReturnChecked(
+    test,
+    match,
+  ) {
+    // 1 == true && 0 == false
+    return test === match ? 1 : 0;
+  };
+  
   // hh:mm bb = 00:00 AM
   formatDate = function formatDateUsingALibrary(string) {
     let yearString = string.slice(0, 4);
     let monthString = string.slice(5, 7);
     let dayString = string.slice(8, 10);
-    return format(new Date(++yearString, (++monthString - 1), ++dayString), 'MM/dd/yyyy');
+
+    let year = parseInt(yearString);
+    let month = parseInt(monthString);
+    let day = parseInt(dayString);
+
+    return format(new Date(year, (month - 1), day), 'MM/dd/yyyy');
   };
 
   countTodoList = () => todoList.length;
 
-  renameTitle(
+  renameTitle = function getTheDataKeyThenUsingDotNotationToEqualTheValueOfChange(
     dataKey = 0,
-    titleValue = ''  
+    titleValue = ''
   ) {
-    return todoList[dataKey].title = this.capitalize(titleValue);
-  };
+    if (titleValue.length >= 4) {
+      return todoList[dataKey].title = titleValue;
+    };
+  }
 
-  editDescription(
+  editDescription = function getTheDataKeyThenUsingDotNotationToEqualTheValueOfChange(
     dataKey = 0,
     descriptionValue = ''
   ) {
     return todoList[dataKey].description = descriptionValue;
   };
 
-  changePriority(
+  changePriority = function getTheDataKeyThenUsingDotNotationToEqualTheValueOfChange(
     dataKey = 0,
     priorityValue = ''
   ) {
     return todoList[dataKey].priority = priorityValue;
   };
   
-  changeDueDate(
+  changeDueDate = function getTheDataKeyThenUsingDotNotationToEqualTheValueOfChange(
     dataKey = 0,
     dueDateValue = ''
   ) {
-    return todoList[dataKey].dueDate = this.formatDate(dueDateValue);
+    return todoList[dataKey].dueDate = dueDateValue;
   };
 };
 
@@ -82,21 +97,18 @@ class TodoCreate {
     dueDate,
     count,
   ) {
-    if (
-      title.length >= 4
-      && title.length <= 60
-      && description.length <= 120
-    ) {
+    if (title.length >= 4) {
       const todos = new Todo(
         title, 
         description, 
-        priority, 
+        priority,
         dueDate,
         count,
       );
+      return todoList.push(todos);
     }
-    return todoList.push(todos);
   };
 };
 
 export const todoCreate = new TodoCreate();
+
