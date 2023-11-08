@@ -2,23 +2,23 @@ import { todoItem } from '../create_html_files/create_todo_item';
 import { todoList, todos } from '../create_todo/todo_create';
 import { elementPreventdefault } from '../create_html_files/form_aside';
 
-class ParentAndChildren {
-
-  static appendChildren(
+const ParentAndChildren = {  
+  
+  appendChildren(
     parent,
     children,
   ) {
     parent.appendChild(children);
-  };
+  },
 
-  static hideParentElement(element) {
-    element.classList.toggle('hide');
-  };
+  hideParentElement(element) {
+    element.close();
+  },
 };
 
 class AppendWithCondition {
 
-  appendIfConditionWereSatisfied(
+  appendIfConditionWereSatisfied = function appendChildrenWithThePropertiesFromTodoList(
     titleLength,
     parent, 
     preventElement,
@@ -31,11 +31,12 @@ class AppendWithCondition {
       elementPreventdefault(preventElement);
       ParentAndChildren.hideParentElement(hideElement);
 
-      const countValue = todoList.slice(-1)[0].count;
-      const titleValue = todoList.slice(-1)[0].title;
-      const priorityValue = todoList.slice(-1)[0].priority;
-      const dueDateValue = todoList.slice(-1)[0].dueDate;
-
+      const lastItemTodoList = todoList.length - 1;
+      const countValue = todoList[lastItemTodoList].count;
+      const titleValue = todoList[lastItemTodoList].title;
+      const priorityValue = todoList[lastItemTodoList].priority;
+      const dueDateValue = todoList[lastItemTodoList].dueDate;
+      const descriptionValue = todoList[lastItemTodoList].description;
       const colorBasedPriority = todos.prioritize(priorityValue);
       const formattedDate = todos.formatDate(dueDateValue);
 
@@ -46,10 +47,13 @@ class AppendWithCondition {
           colorBasedPriority,
           titleValue,
           formattedDate,
+          descriptionValue,
+          priorityValue,
         ),
       );
     }
   };
+
 };
 
 export const appendWithObjectLengthCondition = new AppendWithCondition();
