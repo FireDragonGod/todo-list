@@ -12,14 +12,16 @@ class Pusher {
     const dataAttributeValue = `div[data-key="${dataAttribute}"]`;
 
     switch (classListValue) {
-      case todayButtonClassListValue: {
+      case todayButtonClassListValue : {
         return arrayOfElementInStrings.push('div[data-today]');
       }
-      case thisWeekButtonClassListValue: {
+      case thisWeekButtonClassListValue : {
         return arrayOfElementInStrings.push('div[data-this-week]');
       }
+      case 'div[data-blank]' : {
+        return arrayOfElementInStrings.push('div[data-blank]');
+      }
       default: {
-
         // do nothing
         break;
       }
