@@ -1,15 +1,13 @@
-const BlankContent = function CreateAnHTMLElementThatIsUsedWhenTogglingAnElementWithProjects() {
+class BlankContent {
 
-  const blankContentForContextContent = function createElementsToUseAsAdefaultElementWhenItemsAreRemoved() {
+  blankContentForContextContent = function createElementsToUseAsAdefaultElementWhenItemsAreRemoved(dataKey) {
     const divContentBlankContent = document.createElement('div');
     divContentBlankContent.setAttribute(
       'data-blank',
-      '0',
+      `${dataKey}`,
     );
     return divContentBlankContent;
   };
-
-  return { blankContentForContextContent };
 };
 
-export const blankContent = BlankContent();
+export const blankContent = new BlankContent();
