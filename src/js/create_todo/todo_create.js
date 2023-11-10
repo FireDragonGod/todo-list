@@ -2,24 +2,26 @@ import { format } from 'date-fns';
 
 export const todoList = [];
 
-class Todo {
-  
-  constructor(
-    title,    
+const Todo = function TodoItem(
+    title,
     description,
     priority,
     dueDate,
-    count,
-  ) {
-    this.title = title;
-    this.description = description;
-    this.priority = priority;
-    this.dueDate = dueDate;
-    this.count = count;
+    index,
+  ){
+
+  'use strict';
+
+  const todo = {
+    title: title,
+    description: description,
+    priority: priority,
+    dueDate: dueDate,
+    index: index,
   };
 
-  prioritize = function returnColorBasedOnThePriority(priorityLevel) {
-    switch (priorityLevel) {
+  function getColorBasedOnThePriorityLevel() {
+    switch (priority) {
       case 'low_priority' : {
         return 'green';
       }
@@ -32,19 +34,11 @@ class Todo {
     }
   };
 
-  checkPriority = function getPriorityToMatchWithThePriorityIfItsMatchThenReturnChecked(
-    test,
-    match,
-  ) {
-    // 1 == true && 0 == false
-    return test === match ? 1 : 0;
-  };
-  
-  // hh:mm bb = 00:00 AM
-  formatDate = function formatDateUsingALibrary(string) {
-    let yearString = string.slice(0, 4);
-    let monthString = string.slice(5, 7);
-    let dayString = string.slice(8, 10);
+  function formatDate() {
+    let date = dueDate;
+    let yearString = date.slice(0, 4);
+    let monthString = date.slice(5, 7);
+    let dayString = date.slice(8, 10);
 
     let year = parseInt(yearString);
     let month = parseInt(monthString);
@@ -53,62 +47,49 @@ class Todo {
     return format(new Date(year, (month - 1), day), 'MM/dd/yyyy');
   };
 
-  countTodoList = () => todoList.length;
+  function getPropertyValue() {
+    return todo;
+  };
 
-  renameTitle = function getTheDataKeyThenUsingDotNotationToEqualTheValueOfChange(
-    dataKey = 0,
-    titleValue = ''
-  ) {
-    if (titleValue.length >= 4) {
-      return todoList[dataKey].title = titleValue;
-    };
+  function setPropertyValue(property, value) {
+    return todo[property] = value;
+  };
+
+  return {
+    getPropertyValue,
+    setPropertyValue,
+    getColorBasedOnThePriorityLevel,
+    formatDate,
   }
-
-  editDescription = function getTheDataKeyThenUsingDotNotationToEqualTheValueOfChange(
-    dataKey = 0,
-    descriptionValue = ''
-  ) {
-    return todoList[dataKey].description = descriptionValue;
-  };
-
-  changePriority = function getTheDataKeyThenUsingDotNotationToEqualTheValueOfChange(
-    dataKey = 0,
-    priorityValue = ''
-  ) {
-    return todoList[dataKey].priority = priorityValue;
-  };
-  
-  changeDueDate = function getTheDataKeyThenUsingDotNotationToEqualTheValueOfChange(
-    dataKey = 0,
-    dueDateValue = ''
-  ) {
-    return todoList[dataKey].dueDate = dueDateValue;
-  };
 };
 
-export const todos = new Todo();
+function AddTodo() {
+  'use strict';
 
-class TodoCreate {
-
-  addTodo = function createANewTodoObject(
+  function createTodo(
     title,
-    description, 
-    priority, 
+    description,
+    priority,
     dueDate,
-    count,
+    index,
   ) {
     if (title.length >= 4) {
-      const todos = new Todo(
-        title, 
-        description, 
+      const todo = Todo(
+        title,
+        description,
         priority,
         dueDate,
-        count,
+        index,
       );
-      return todoList.push(todos);
+      return todoList.push(todo);
     }
   };
-};
 
-export const todoCreate = new TodoCreate();
+  return {
+    createTodo,
+  }
+}
+
+export const addTodo = AddTodo();
+
 
