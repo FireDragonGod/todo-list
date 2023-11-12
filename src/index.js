@@ -1,12 +1,13 @@
-import './assets/style.css';
+import './assets/css/style.css';
 import { formf } from './js/create_project/Form';
-import { pusher } from './js/create_project/pusher';
+import { getValueFromArray, pusher } from './js/create_project/pusher';
 import { elementToggler } from './js/create_html_files/form_aside';
 import { count, gettingProjectArr } from './js/create_project/create_project';
 import { conditionAppending } from './js/create_project/conditional_append';
 import { today } from './js/create_html_files/today';
 import { thisWeek } from './js/create_html_files/this_week';
 import { mainContent } from './js/create_html_files/todo_with_form';
+import { blankContent } from './js/create_html_files/blank';
 
 const addProjectButton = document.querySelector('button.add_project_button');
 const form = document.querySelector('.formList');
@@ -50,13 +51,9 @@ const todayButton = document.querySelector('button.today_button');
 const thisWeekButton = document.querySelector('button.date_range_button');
 const content = document.querySelector('#context_content');
 
-content.appendChild(
-  today.createHTMLElementsForToday(999),
-);
-
-content.appendChild(
-  thisWeek.createHTMLElementsForThisWeek(999),
-);
+content.appendChild(today.createHTMLElementsForToday(0));
+content.appendChild(thisWeek.createHTMLElementsForThisWeek(0));
+content.appendChild(blankContent.blankContentForContextContent(0))
 
 const homeButtons = [
   todayButton,
@@ -70,10 +67,10 @@ homeButtons.forEach(element => {
     (event) => {
 
       const eventClasListValue = event.target.classList.value;
-      pusher.elementPusher(eventClasListValue);
+      pusher.pushHtmlElementValue(eventClasListValue);
 
-      const lastElement = document.querySelector(`${pusher.lastValueFromArrayOfElementInStrings}`);
-      const secondToTheLastElement = document.querySelector(`${pusher.secondLastValueFromArrayOfElementInStrings}`);
+      const lastElement = document.querySelector(`${getValueFromArray.getLastValue()}`);
+      const secondToTheLastElement = document.querySelector(`${getValueFromArray.getSecondToTheLastValue()}`);
 
       elementToggler(
         lastElement,
