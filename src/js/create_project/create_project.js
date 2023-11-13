@@ -1,29 +1,55 @@
-export const projectArr = [];
-
 class Project {
   constructor(
-    name = 'name',
-    index = 0,
+    project,
+    index,
   ) {
-    this.project = name;
-    this.dataKey = index;
+    this.project = project;
+    this.index = index;
   };
+
+  getPropValue(prop) {
+    return this[prop];
+  };
+
+  setPropValue(prop, value) {
+    return this[prop] = value;
+  }
 };
 
-export const count = () => projectArr.length;
-export const gettingProjectArr = () => projectArr;
+class Projects {
+  #projects = [];
 
-class ProjectObject {
-  createProjectObj(
-    projectName = 'string', 
-    dataKey = 0,
+  addProject(
+    project,
+    index,
   ) {
-    const projectObj = new Project(
-      projectName,
-      dataKey
+    if (project.length >= 4) {
+      return this.#projects.push(new Project(
+        project,
+        index,
+      ));
+    }
+  };
+
+  getProjectsLength() {
+    return this.#projects.length;
+  };
+
+  getProjectsItemPropertyValue(
+    index,
+    property
+  ) {
+    return this.#projects.at(index).getPropValue(property);
+  };
+
+  dereferProjectsItem(index) {
+    return this.#projects.splice(
+      index,
+      1,
+      null
     );
-    return projectArr.push(projectObj);
   };
 };
 
-export const projectObject = new ProjectObject();
+export const projectLists = new Projects();
+
