@@ -1,46 +1,45 @@
 
-const arrayOfElementInStrings = ['div[data-today]'];
+const elementValues = ['div[data-today]'];
 
 class Pusher {
 
-  elementPusher = function addAValueToTheArrayOfElement(
+  pushHtmlElementValue(
     classListValue,
     dataAttribute = 0
   ) {
-    const todayButtonClassListValue = 'today_button';
-    const thisWeekButtonClassListValue = 'date_range_button';
-    const dataAttributeValue = `div[data-key="${dataAttribute}"]`;
-
     switch (classListValue) {
-      case todayButtonClassListValue : {
-        return arrayOfElementInStrings.push('div[data-today]');
+      case 'today_button' : {
+        return elementValues.push('div[data-today]');
       }
-      case thisWeekButtonClassListValue : {
-        return arrayOfElementInStrings.push('div[data-this-week]');
+      case 'date_range_button' : {
+        return elementValues.push('div[data-this-week]');
       }
       case 'div[data-blank]' : {
-        return arrayOfElementInStrings.push('div[data-blank]');
-      }
-      default: {
-        // do nothing
-        break;
+        return elementValues.push('div[data-blank]');
       }
     };
-
-    if (dataAttribute) {
-      return arrayOfElementInStrings.push(dataAttributeValue);
+    if (!classListValue) {
+      return this.#pushDataAttributeValue(dataAttribute);
     }
   };
 
-  get secondLastValueFromArrayOfElementInStrings() {
-    return arrayOfElementInStrings.slice(-2).reverse().slice(-1);
+  #pushDataAttributeValue(
+    dataAttribute,
+  ) {
+    const dataAttributeValue = `div[data-key="${dataAttribute}"]`;
+    return elementValues.push(dataAttributeValue)
   };
+};
 
-  get lastValueFromArrayOfElementInStrings() {
-    return arrayOfElementInStrings.slice(-1);
-  };
-}
-;
+export const getValueFromArray = {
+  
+  getSecondToTheLastValue() {
+    return elementValues.slice(-2).reverse().slice(-1);
+  },
 
+  getLastValue() {
+    return elementValues.slice(-1);
+  },
+};
 
 export const pusher = new Pusher();
