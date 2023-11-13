@@ -1,6 +1,4 @@
-import { projectObject } from "./create_project";
-import { elementPreventdefault } from "../create_html_files/form_aside";
-import { elementToggler } from "../create_html_files/form_aside";
+import { projectLists } from "./create_project";
 
 class Form {
   formToggling(
@@ -10,17 +8,15 @@ class Form {
     element,
     secondElement
   ) {
-    if (classList === 'add_project_button'
+    if (
+      classList === 'add_project_button'
       || classList === 'cancel'
-      || classList === 'save' & input >= 4) {
-
-      elementPreventdefault(event);
-
-      elementToggler(
-        element,
-        secondElement
-      );
-    }
+      || classList === 'save' & input >= 4
+    ) {
+      event.preventDefault();
+      element.classList.toggle('hide');
+      secondElement.classList.toggle('hide');
+    };
   };
 
   formInputSave(
@@ -29,10 +25,10 @@ class Form {
     inputLength = 0
   ) {
     if (inputLength >= 4) {
-      return projectObject.createProjectObj(
+      return projectLists.addProject(
         name,
-        data
-      );
+        data,
+      )
     }
   };
 };
