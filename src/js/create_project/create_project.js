@@ -35,11 +35,8 @@ class Projects {
     return this.#projects.length;
   };
 
-  getProjectsItemPropertyValue(
-    index,
-    property
-  ) {
-    return this.#projects.at(index).getPropValue(property);
+  getProjectsItem(index) {
+    return this.#projects.at(index);
   };
 
   dereferProjectsItem(index) {
