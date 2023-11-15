@@ -1,45 +1,60 @@
+const HtmlElement = () => {
 
-const elementValues = ['div[data-today]'];
+  const elements = ['div[data-today]'];
 
-class Pusher {
-
-  pushHtmlElementValue(
-    classListValue,
-    dataAttribute = 0
-  ) {
-    switch (classListValue) {
-      case 'today_button' : {
-        return elementValues.push('div[data-today]');
-      }
-      case 'date_range_button' : {
-        return elementValues.push('div[data-this-week]');
-      }
-      case 'div[data-blank]' : {
-        return elementValues.push('div[data-blank]');
-      }
-    };
-    if (!classListValue) {
-      return this.#pushDataAttributeValue(dataAttribute);
+  const blankContent = (elementClassList) => {
+    if (elementClassList === 'div[data-blank]' ) {
+      return elements.push('div[data-blank]');
     }
   };
 
-  #pushDataAttributeValue(
+  const projectDataAttribute = (
     dataAttribute,
-  ) {
+  ) => {
     const dataAttributeValue = `div[data-key="${dataAttribute}"]`;
-    return elementValues.push(dataAttributeValue)
+    return elements.push(dataAttributeValue);
   };
+
+  const asideButtons = (classListValue) => {
+    if (classListValue === 'today_button') {
+      return elements.push('div[data-today]')
+    }
+    
+    if (classListValue === 'date_range_button') {
+      return elements.push('div[data-this-week]') 
+    }
+  };
+
+  const elementPusher = (
+    classListValue,
+    dataAttributeValue,
+    elementWithDataAttribute,
+  ) =>  {
+    if (classListValue) {
+      return asideButtons(classListValue);
+    };
+    if (dataAttributeValue) {
+      return projectDataAttribute(dataAttributeValue);
+    };
+    if (elementWithDataAttribute) {
+      return blankContent('div[data-blank]');
+    };
+  };
+
+  const getSecondToTheLastElement = () => {
+    return elements.slice(-2).reverse().slice(-1);
+  };
+
+  const getLastElement = () => {
+    return elements.slice(-1);
+  };
+
+  return {
+    elementPusher,
+    getSecondToTheLastElement,
+    getLastElement,
+  }
 };
 
-export const getValueFromArray = {
-  
-  getSecondToTheLastValue() {
-    return elementValues.slice(-2).reverse().slice(-1);
-  },
 
-  getLastValue() {
-    return elementValues.slice(-1);
-  },
-};
-
-export const pusher = new Pusher();
+export const htmlElement = HtmlElement();
