@@ -1,9 +1,12 @@
-import add from '../../assets/add_FILL0_wght400_GRAD0_opsz24.svg';
-import close from '../../assets/close_FILL0_wght400_GRAD0_opsz24_copy.svg';
-import { todoCreate, todos, todoList } from '../create_todo/todo_create';
+import add from '../../assets/img/add_FILL0_wght400_GRAD0_opsz24.svg';
+import close from '../../assets/img/close_FILL0_wght400_GRAD0_opsz24_copy.svg';
+import { todoLists } from '../create_todo/todo_create';
 import { appendWithObjectLengthCondition } from '../create_todo/conditional_append';
+import { changeTodoValues } from '../create_todo/change_todo_values';
 
 class ProjectOnTheMainContent {
+
+  createHTMLTodoItem() {};
 
   representProjectName(
     projectNameContent,
@@ -20,6 +23,11 @@ class ProjectOnTheMainContent {
     projectNameWrapper.setAttribute(
       'data-key',
       `${dataKey}`
+    );
+
+    projectNameWrapper.setAttribute(
+      'class',
+      'project-main-contents'
     );
 
     todoAddButtonToShowForm.textContent = 'Add Todo';
@@ -161,28 +169,33 @@ class ProjectOnTheMainContent {
       )
     })
 
+    // create todo via submit form
     submit.addEventListener(
       'click',
       (event) => {
+        event.preventDefault();
         const justBelowTheButton = document.querySelector(`div[data-key="${dataKey}"] > div`);
 
-        todoCreate.addTodo(
+        todoLists.addTodoLists(
           title.value,
           description.value,
           priorityLevelStore,
           dueDate.value !== '' ?  dueDate.value : '2023-11-06',
-          todos.countTodoList(),
+          todoLists.getTodoListsLength(),
         );
 
-        appendWithObjectLengthCondition.appendIfConditionWereSatisfied(
+        appendWithObjectLengthCondition.appendIfConditionsWereSatisfied(
           title.value.length,
           justBelowTheButton, 
           event,
           dialog,
         );
 
+        changeTodoValues.addPriorityClassListsItem(priorityLevelStore);
+
         title.value = '';
         description.value = '';
+        priorityLevelStore = 'low_priority';
         dueDate.value = '2023-11-06';
         
         const radios = [
