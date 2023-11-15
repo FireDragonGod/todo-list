@@ -1,52 +1,54 @@
-class Project {
-  constructor(
-    project,
-    index,
-  ) {
-    this.project = project;
-    this.index = index;
-  };
+const Project = (
+  projectName, 
+  projectIndex
+  ) => {
+  'use strict';
 
-  getPropValue(prop) {
-    return this[prop];
+  return { 
+    projectName, 
+    projectIndex 
   };
-
-  setPropValue(prop, value) {
-    return this[prop] = value;
-  }
 };
 
-class Projects {
-  #projects = [];
+const Projects = () => {
+  'use strict';
 
-  addProject(
-    project,
-    index,
-  ) {
-    if (project.length >= 4) {
-      return this.#projects.push(new Project(
-        project,
-        index,
-      ));
-    }
+  const projects = [];
+
+  const addProject = (
+    projectName,
+    projectIndex
+  ) => {
+    const projectObj = Project(
+      projectName,
+      projectIndex
+    );
+  
+    return projects.push(projectObj);
   };
 
-  getProjectsLength() {
-    return this.#projects.length;
+  const getProjectsLength = () => {
+    return projects.length;
   };
 
-  getProjectsItem(index) {
-    return this.#projects.at(index);
+  const getProjectsItem = (index) => {
+    return projects.at(index);
   };
 
-  dereferProjectsItem(index) {
-    return this.#projects.splice(
+  const dereferProjectItem = (index) => {
+    return projects.splice(
       index,
       1,
       null
     );
   };
+
+  return { 
+    getProjectsItem,
+    addProject, 
+    getProjectsLength,
+    dereferProjectItem,
+  }
 };
 
-export const projectLists = new Projects();
-
+export const projectLists = Projects();
