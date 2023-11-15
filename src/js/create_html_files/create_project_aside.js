@@ -1,6 +1,7 @@
-import { pusher } from '../create_project/pusher';
+import { htmlElement } from '../create_project/pusher';
 import { elementToggler } from '../create_html_files/form_aside'
-import remove from '../../assets/remove_FILL0_wght400_GRAD0_opsz24.svg';
+import remove from '../../assets/img/remove_FILL0_wght400_GRAD0_opsz24.svg';
+import { projectLists } from '../create_project/create_project';
 
 class ListOfProject {
 
@@ -41,24 +42,21 @@ class ListOfProject {
         (event) => {
           const dataKey = event.target.getAttribute('data-key');
 
-          pusher.elementPusher(
-            undefined, 
-            dataKey
+          htmlElement.elementPusher(
+            undefined,
+            dataKey,
           );
 
-          
-          const lastElement = pusher.lastValueFromArrayOfElementInStrings;
-          const previousElement = pusher.secondLastValueFromArrayOfElementInStrings;
+          const lastElement = htmlElement.getLastElement();
+          const previousElement = htmlElement.getSecondToTheLastElement();
 
           const lastQueryElement = document.querySelector(`${lastElement}`);
           const previousQueryElement = document.querySelector(`${previousElement}`);
-
-          console.log(event, previousQueryElement)
           
-          elementToggler(
+          elementToggler( 
             previousQueryElement,
             lastQueryElement,
-          )
+          );
         }
       )
     })
@@ -67,7 +65,29 @@ class ListOfProject {
       'click',
       (event) => {
         event.stopImmediatePropagation();
+        const projectContent = document.querySelector(`div[data-key="${dataKey}"]`);
+        const blankContents = 'div[data-blank]';
+
+        htmlElement.elementPusher(
+          undefined,
+          undefined,
+          blankContents,
+        );
+
+        const lastElement = htmlElement.getLastElement();
+        const previousElement = htmlElement.getSecondToTheLastElement();
+
+        const lastQueryElement = document.querySelector(`${lastElement}`);
+        const previousQueryElement = document.querySelector(`${previousElement}`);
+
+        elementToggler( 
+          previousQueryElement,
+          lastQueryElement,
+        );
+
         li.remove();
+        projectContent.remove();
+        projectLists.dereferProjectItem(dataKey);
       }
     );
 
