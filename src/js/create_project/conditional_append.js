@@ -1,9 +1,9 @@
 import { projectLists } from "./create_project";
 import { ListOfProjectForDom } from '../create_html_files/create_project_aside'
 
-class  AppendingChildrenWithConditional {
+const  AppendingChildrenWithConditional = () => {
 
-  appendding = function AppendIfObjectLengthIsGreaterThanOrEqualToOne(
+  const appendding = function AppendIfObjectLengthIsGreaterThanOrEqualToOne(
     parent,
     objectLength,
     inputValue,
@@ -14,9 +14,11 @@ class  AppendingChildrenWithConditional {
       objectLength >= 1
       && minimumInputValueLength >= 4
     ) {
-      const projectName = projectLists.getProjectsItem(-1).getPropValue('project');
-      const projectIndex = projectLists.getProjectsItem(-1).getPropValue('index');
 
+      
+      const projectName = projectLists.getProjectsItem(-1).projectName;
+      const projectIndex = projectLists.getProjectsItem(-1).projectIndex;
+      
       parent.appendChild(ListOfProjectForDom.AppendListChildren(
         projectName,
         projectIndex,
@@ -24,7 +26,7 @@ class  AppendingChildrenWithConditional {
     };
   };
 
-  appenddingNew = function appendObjectIfTheValueIsGreaterThanOrEqualToFour(
+  const appenddingNew = function appendObjectIfTheValueIsGreaterThanOrEqualToFour(
     parent,
     object,
     valueLength,
@@ -33,6 +35,11 @@ class  AppendingChildrenWithConditional {
       return parent.appendChild(object)
     }
   };
+
+  return {
+    appendding,
+    appenddingNew,
+  }
 };
 
-export const conditionAppending = new AppendingChildrenWithConditional();
+export const conditionAppending = AppendingChildrenWithConditional();
