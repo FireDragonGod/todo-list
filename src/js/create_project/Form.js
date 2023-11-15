@@ -1,7 +1,7 @@
 import { projectLists } from "./create_project";
 
-class Form {
-  formToggling(
+const Form  = () => {
+  const formToggling = function toggleFormWithAddProjectButtonCancelToCancelAndSaveToToggleForm(
     event,
     classList,
     input,
@@ -19,7 +19,7 @@ class Form {
     };
   };
 
-  formInputSave(
+  const formInputSave = function saveFormInputsToProjectLists(
     name = 'projectName',
     data = 0,
     inputLength = 0
@@ -31,6 +31,11 @@ class Form {
       )
     }
   };
+
+  return {
+    formToggling,
+    formInputSave,
+  }
 };
 
-export const formf = new Form();
+export const formf = Form();
