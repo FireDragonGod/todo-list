@@ -1,6 +1,7 @@
-import remove from '../../assets/remove_FILL0_wght400_GRAD0_opsz24.svg';
-import expandContent from '../../assets/expand_content_FILL0_wght400_GRAD0_opsz24.svg';
-import edit from '../../assets/edit_FILL0_wght400_GRAD0_opsz24.svg';
+import remove from '../../assets/img/remove_FILL0_wght400_GRAD0_opsz24.svg';
+import edit from '../../assets/img/edit_FILL0_wght400_GRAD0_opsz24.svg';
+import { editTodoItem } from './edit_todo';
+import { todoLists } from '../create_todo/todo_create';
 
 function appendMoreChildren(
   parent, 
@@ -9,7 +10,7 @@ function appendMoreChildren(
   child.forEach((element) => {
     parent.appendChild(element);
   });
-}
+};
 
 class TodoItem {
 
@@ -18,6 +19,8 @@ class TodoItem {
     colorCoding,
     title,
     dueDate,
+    description,
+    priorityLevel,
   ) {
     const todoItemWrapper = document.createElement('div');
     const form = document.createElement('form');
@@ -27,13 +30,18 @@ class TodoItem {
     const checkLabel = document.createElement('label');
 
     const divTitle = document.createElement('div');
+    const divPriority = document.createElement('div');
     const divDueDate = document.createElement('div');
     const divRemove = document.createElement('div');
     const divEdit = document.createElement('div');
     const h2 = document.createElement('h2');
     const paraDate = document.createElement('p');
 
-    todoItemWrapper.classList.add(`${colorCoding}`);
+    divPriority.classList.add(`${colorCoding}`);
+    todoItemWrapper.setAttribute(
+      'class',
+      'todo-item'
+    )
 
     let removeImg = new Image();
     let editContent = new Image();
@@ -41,14 +49,15 @@ class TodoItem {
     h2.textContent = `${title}`;
     paraDate.textContent = `${dueDate}`;
 
+    const datesForForm = {
+      dueDateMm: dueDate.slice(0, 2),
+      dueDateDd: dueDate.slice(3, 5),
+      dueDateYyyy: dueDate.slice(6, 10),
+    };
+
     removeImg.setAttribute(
       'alt',
       'remove?'
-    );
-
-    expandContentImg.setAttribute(
-      'alt',
-      'expand content'
     );
 
     editContent.setAttribute(
@@ -77,12 +86,27 @@ class TodoItem {
     checkLabel.setAttribute(
       'for',
       'checkList',
+    );
+
+    removeImg.addEventListener(
+      'click',
+      (event) => {
+        todoLists.dereferTodoListsItem(dataTodoItem);
+        todoItemWrapper.remove();
+      }
     )
+
+    check.addEventListener(
+      'click',
+      (event) => {
+        event.target.checked ? h2.classList.toggle('strikethrough') : h2.classList.toggle('strikethrough');
+      }
+    );
 
     check.setAttribute(
       'type',
       'checkbox',
-    )
+    );
 
     check.setAttribute(
       'id',
@@ -95,8 +119,23 @@ class TodoItem {
     );
 
     divRemove.appendChild(removeImg);
-    divExpand.appendChild(expandContentImg);
     divEdit.appendChild(editContent);
+
+    divEdit.appendChild(editTodoItem.editTodoForm(
+      dataTodoItem,
+      title,
+      description,
+      priorityLevel,
+      `${datesForForm.dueDateYyyy}-${datesForForm.dueDateMm}-${datesForForm.dueDateDd}`,
+    ));
+
+    editContent.addEventListener(
+      'click',
+      (event) => {
+        const modal = document.querySelector(`dialog[data-todo-edit="${dataTodoItem}"]`);
+        modal.showModal();
+      }
+    )
 
     form.appendChild(onles);
     onles.appendChild(li);
@@ -117,6 +156,7 @@ class TodoItem {
       [
         form, 
         divTitle,
+        divPriority,
         divDueDate,
         divRemove,
         divEdit,
