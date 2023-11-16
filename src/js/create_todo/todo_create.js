@@ -1,95 +1,171 @@
 import { format } from 'date-fns';
 
-export const todoList = [];
+const Todos = (
+  title,
+  description,
+  priority,
+  dueDate,
+  index,
+) => {
+  'use strict';
 
-const Todo = function TodoItem(
+  return {
     title,
     description,
     priority,
     dueDate,
     index,
-  ){
+  };
+};
 
+const Match = () => {
+  
+  const match = (
+    matchValue,
+    testValue
+  ) => {
+    return matchValue === testValue ? 1 : 0;
+  };
+
+  return {
+    match,
+  }
+};
+
+export const matchValue = Match();
+
+const Dates = () => {
   'use strict';
 
-  const todo = {
-    title: title,
-    description: description,
-    priority: priority,
-    dueDate: dueDate,
-    index: index,
-  };
+  const formatFormDateValues = (newDate) => {
+    const date = newDate;
 
-  function getColorBasedOnThePriorityLevel() {
-    switch (priority) {
-      case 'low_priority' : {
-        return 'green';
-      }
-      case 'medium_priority' : {
-        return 'yellow';
-      }
-      case 'high_priority' : {
-        return 'orange';
-      }
-    }
-  };
-
-  function formatDate() {
-    let date = dueDate;
     let yearString = date.slice(0, 4);
     let monthString = date.slice(5, 7);
     let dayString = date.slice(8, 10);
 
+    return {
+      yearString,
+      monthString,
+      dayString,
+    };
+  };
+
+  const parseDate = (
+    yearString,
+    monthString,
+    dayString,
+  ) => {
     let year = parseInt(yearString);
     let month = parseInt(monthString);
     let day = parseInt(dayString);
 
+    return {
+      year,
+      month,
+      day,
+    };
+  };
+
+  const formatDate = (newDate) => {
+
+    const formDateValues = formatFormDateValues(newDate);
+    const parseDateValues = parseDate(formDateValues.yearString, formDateValues.monthString, formDateValues.dayString);
+
+    const year = parseDateValues.year;
+    const month = parseDateValues.month;
+    const day = parseDateValues.day;
+
+
     return format(new Date(year, (month - 1), day), 'MM/dd/yyyy');
   };
 
-  function getPropertyValue() {
-    return todo;
+  return {
+    formatDate,
   };
+};
 
-  function setPropertyValue(property, value) {
-    return todo[property] = value;
+export const dates = Dates();
+
+const convertColor = function convertPriorityIntoColorBasedOnHowImportantItIs() {
+  'use strict';
+
+  const colors = [
+    'green',
+    'yellow', 
+    'orange'
+  ];
+
+  const priorityConvert = (priority) => {
+    switch (priority) {
+      case 'low_priority' : {
+        return colors[0];
+      }
+      case 'medium_priority' : {
+        return colors[1];
+      }
+      case 'high_priority' : {
+        return colors[2];
+      }
+      case null : {
+        return colors[0];
+      }
+    }
   };
 
   return {
-    getPropertyValue,
-    setPropertyValue,
-    getColorBasedOnThePriorityLevel,
-    formatDate,
+    priorityConvert,
   }
 };
 
-function AddTodo() {
+export const colorConvert = convertColor();
+
+const TodoLists = function TodoListsArrayContainerAndMethodsToGetItemAndDerefer() {
   'use strict';
 
-  function createTodo(
+  const todoLists = [];
+
+  const addTodoLists = (
     title,
     description,
     priority,
     dueDate,
     index,
-  ) {
+  ) => {
     if (title.length >= 4) {
-      const todo = Todo(
+      const todoList = Todos(
         title,
         description,
         priority,
         dueDate,
         index,
       );
-      return todoList.push(todo);
+      return todoLists.push(todoList);
     }
   };
 
+  const getTodoListsLength = () => {
+    return todoLists.length;
+  };
+
+  const getTodoListsItem = (index) => {
+    return todoLists.at(index);
+  };
+
+  const dereferTodoListsItem = (index) => {
+    return todoLists.splice(
+      index,
+      1,
+      null,
+    );
+  };
+
   return {
-    createTodo,
+    addTodoLists,
+    getTodoListsItem,
+    dereferTodoListsItem,
+    getTodoListsLength,
   }
-}
+};
 
-export const addTodo = AddTodo();
-
-
+export const todoLists = TodoLists();
