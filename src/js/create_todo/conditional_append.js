@@ -1,59 +1,50 @@
 import { todoItem } from '../create_html_files/create_todo_item';
-import { todoList, todos } from '../create_todo/todo_create';
-import { elementPreventdefault } from '../create_html_files/form_aside';
+import { todoLists } from '../create_todo/todo_create';
+import { colorConvert } from '../create_todo/todo_create';
+import { dates } from '../create_todo/todo_create'
 
-const ParentAndChildren = {  
-  
-  appendChildren(
-    parent,
-    children,
-  ) {
-    parent.appendChild(children);
-  },
+const AppendWithCondition = () => {
 
-  hideParentElement(element) {
-    element.close();
-  },
-};
-
-class AppendWithCondition {
-
-  appendIfConditionWereSatisfied = function appendChildrenWithThePropertiesFromTodoList(
+  const appendIfConditionsWereSatisfied = function appendChildrenWithThePropertiesFromTodoList(
     titleLength,
     parent, 
     preventElement,
     hideElement,
   ) {
+    'use strict';
     if (
-      todoList.length >= 1
+      todoLists.getTodoListsLength() >= 1
       && titleLength >= 4
-      ) {
-      elementPreventdefault(preventElement);
-      ParentAndChildren.hideParentElement(hideElement);
+    ) {
+      preventElement.preventDefault();
+      hideElement.close();
 
-      const lastItemTodoList = todoList.length - 1;
-      const countValue = todoList[lastItemTodoList].count;
-      const titleValue = todoList[lastItemTodoList].title;
-      const priorityValue = todoList[lastItemTodoList].priority;
-      const dueDateValue = todoList[lastItemTodoList].dueDate;
-      const descriptionValue = todoList[lastItemTodoList].description;
-      const colorBasedPriority = todos.prioritize(priorityValue);
-      const formattedDate = todos.formatDate(dueDateValue);
+      const todoListsProperty = todoLists.getTodoListsItem(-1);
 
-      ParentAndChildren.appendChildren(
-        parent,
-        todoItem.createTodoItem(
-          countValue,
-          colorBasedPriority,
-          titleValue,
-          formattedDate,
-          descriptionValue,
-          priorityValue,
-        ),
-      );
+      const countValue = todoListsProperty.index;
+      const titleValue = todoListsProperty.title;
+      const descriptionValue = todoListsProperty.description;
+      const priorityValue = todoListsProperty.priority;
+      const dueDateValue = todoListsProperty.dueDate;
+
+      const colorBasedPriority = colorConvert.priorityConvert(priorityValue)
+      const formattedDate = dates.formatDate(dueDateValue);
+
+      parent.appendChild(todoItem.createTodoItem(
+        countValue,
+        colorBasedPriority,
+        titleValue,
+        formattedDate,
+        descriptionValue,
+        priorityValue,
+      ));
     }
   };
 
+  return {
+    appendIfConditionsWereSatisfied,
+  }
+
 };
 
-export const appendWithObjectLengthCondition = new AppendWithCondition();
+export const appendWithObjectLengthCondition = AppendWithCondition();
