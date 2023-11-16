@@ -2,7 +2,7 @@ import add from '../../assets/img/add_FILL0_wght400_GRAD0_opsz24.svg';
 import close from '../../assets/img/close_FILL0_wght400_GRAD0_opsz24_copy.svg';
 import { todoLists } from '../create_todo/todo_create';
 import { appendWithObjectLengthCondition } from '../create_todo/conditional_append';
-import { changeTodoValues } from '../create_todo/change_todo_values';
+import { updateTodoValues } from '../create_todo/update_todo';
 
 class ProjectOnTheMainContent {
 
@@ -191,7 +191,7 @@ class ProjectOnTheMainContent {
           dialog,
         );
 
-        changeTodoValues.addPriorityClassListsItem(priorityLevelStore);
+        updateTodoValues.addPriorityClassListsItem(priorityLevelStore);
 
         title.value = '';
         description.value = '';
