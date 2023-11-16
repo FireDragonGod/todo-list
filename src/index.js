@@ -1,9 +1,10 @@
 import './assets/css/style.css';
 import { formf } from './js/create_project/Form';
-import { getValueFromArray, pusher } from './js/create_project/pusher';
-import { elementToggler } from './js/create_html_files/form_aside';
-import { count, gettingProjectArr } from './js/create_project/create_project';
+import { htmlElement } from './js/create_project/pusher';
+import { projectLists } from './js/create_project/create_project';
 import { conditionAppending } from './js/create_project/conditional_append';
+
+import { elementToggler } from './js/create_html_files/form_aside';
 import { today } from './js/create_html_files/today';
 import { thisWeek } from './js/create_html_files/this_week';
 import { mainContent } from './js/create_html_files/todo_with_form';
@@ -67,10 +68,10 @@ homeButtons.forEach(element => {
     (event) => {
 
       const eventClasListValue = event.target.classList.value;
-      pusher.pushHtmlElementValue(eventClasListValue);
+      htmlElement.elementPusher(eventClasListValue);
 
-      const lastElement = document.querySelector(`${getValueFromArray.getLastValue()}`);
-      const secondToTheLastElement = document.querySelector(`${getValueFromArray.getSecondToTheLastValue()}`);
+      const lastElement = document.querySelector(`${htmlElement.getLastElement()}`);
+      const secondToTheLastElement = document.querySelector(`${htmlElement.getSecondToTheLastElement()}`);
 
       elementToggler(
         lastElement,
@@ -91,7 +92,7 @@ save.addEventListener(
     const projects = document.querySelector('.projects');
     const inputLength = input.value.length;
     const eventClasList = event.target.classList.value;
-    const countF = count();
+    const countF = projectLists.getProjectsLength();
 
     formf.formToggling(
       event,
@@ -109,15 +110,15 @@ save.addEventListener(
 
     conditionAppending.appendding(
       projects,
-      gettingProjectArr(),
-      input
+      countF + 1,
+      input,
     );
 
     conditionAppending.appenddingNew(
       content,
       mainContent.representProjectName(
         input.value,
-        countF
+        countF,
       ),
       inputLength,
     );
