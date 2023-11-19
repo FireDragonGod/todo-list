@@ -4,11 +4,15 @@ import { htmlElement } from './js/create_project/pusher';
 import { projectLists } from './js/create_project/create_project';
 import { conditionAppending } from './js/create_project/conditional_append';
 
-import { elementToggler } from './js/create_html_files/form_aside';
 import { today } from './js/create_html_files/today';
 import { thisWeek } from './js/create_html_files/this_week';
 import { mainContent } from './js/create_html_files/todo_with_form';
 import { blankContent } from './js/create_html_files/blank';
+import { localStorageProjects } from './js/local_storage_/local_storage_projects';
+
+// time used on copyright c then year
+const fullYear = new Date().getFullYear();
+const aCopyRigh = document.querySelector('a[data-copyright-year]').textContent = `${fullYear}`;
 
 const addProjectButton = document.querySelector('button.add_project_button');
 const form = document.querySelector('.formList');
@@ -73,15 +77,15 @@ homeButtons.forEach(element => {
       const lastElement = document.querySelector(`${htmlElement.getLastElement()}`);
       const secondToTheLastElement = document.querySelector(`${htmlElement.getSecondToTheLastElement()}`);
 
-      elementToggler(
-        lastElement,
-        secondToTheLastElement
-      );
+
+      lastElement.classList.toggle('hide');
+      secondToTheLastElement.classList.toggle('hide');
     }
   );
 });
 
 const save = document.querySelector('.save');
+
 
 save.addEventListener(
   'click',
@@ -107,6 +111,9 @@ save.addEventListener(
       countF,
       inputLength
     );
+
+    localStorageProjects.localStorageProjectsSetter();
+    localStorageProjects.localProjectArrayPusherToLocalStorageProjects();
 
     conditionAppending.appendding(
       projects,
