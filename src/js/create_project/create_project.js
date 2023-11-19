@@ -1,7 +1,7 @@
 const Project = (
   projectName, 
   projectIndex
-  ) => {
+) => {
   'use strict';
 
   return { 
@@ -35,6 +35,8 @@ const Projects = () => {
     return projects.at(index);
   };
 
+  const getProjects = () => [...projects];
+
   const dereferProjectItem = (index) => {
     return projects.splice(
       index,
@@ -47,8 +49,9 @@ const Projects = () => {
     getProjectsItem,
     addProject, 
     getProjectsLength,
+    getProjects,
     dereferProjectItem,
-  }
+  };
 };
 
 export const projectLists = Projects();
