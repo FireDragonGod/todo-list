@@ -21,28 +21,6 @@
     <main class="aside_#contextContent">
       <aside class="Today_thisWeek_addProject_projects">
         <nav>
-          <ul class="today_and_this_week">
-            <li class="today">
-              <button class="today_button">
-                <img
-                class="today_button"
-                src="img/today_FILL0_wght400_GRAD0_opsz24.svg"
-                alt="today"
-                >
-                <p class="today_button">Today</p>
-              </button>
-            </li>
-            <li class="date_range">
-              <button class="date_range_button">
-                <img
-                class="date_range_button"
-                src="img/date_range_FILL0_wght400_GRAD0_opsz24.svg"
-                alt="date-range"
-                >
-                <p class="date_range_button">This Week</p>
-              </button>
-            </li>
-          </ul>
           <ul class="projects">
             <li>
               <h3>Projects</h3>
@@ -97,11 +75,7 @@
     <footer>
       <ul id="author">
         <li class="author">Copyright &copy;
-          <a id="time">
-          <script>
-            const fullYear = new Date().getFullYear();
-            const time = document.querySelector('#time').textContent = `${fullYear}`;
-          </script>
+          <a id="time" data-copyright-year="0">
         </a> Fire Dragon God</li>
       </ul>
     </footer>
