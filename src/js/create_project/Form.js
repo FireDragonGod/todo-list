@@ -1,5 +1,3 @@
-import { projectLists } from "./create_project";
-
 const Form  = () => {
   const formToggling = function toggleFormWithAddProjectButtonCancelToCancelAndSaveToToggleForm(
     event,
@@ -18,23 +16,8 @@ const Form  = () => {
       secondElement.classList.toggle('hide');
     };
   };
-
-  const formInputSave = function saveFormInputsToProjectLists(
-    name = 'projectName',
-    data = 0,
-    inputLength = 0
-  ) {
-    if (inputLength >= 4) {
-      return projectLists.addProject(
-        name,
-        data,
-      )
-    }
-  };
-
   return {
     formToggling,
-    formInputSave,
   }
 };
 
