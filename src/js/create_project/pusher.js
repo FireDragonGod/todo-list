@@ -1,6 +1,6 @@
 const HtmlElement = () => {
 
-  const elements = ['div[data-today]'];
+  const elements = ['div[data-blank]'];
 
   const blankContent = (elementClassList) => {
     if (elementClassList === 'div[data-blank]' ) {
