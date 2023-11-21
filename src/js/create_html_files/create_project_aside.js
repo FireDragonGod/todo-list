@@ -88,6 +88,7 @@ class ListOfProject {
         li.remove();
         projectContent.remove();
         projectLists.dereferProjectItem(dataKey);
+        localStorage.setItem(`Project ${dataKey}`, null);
       }
     );
 
