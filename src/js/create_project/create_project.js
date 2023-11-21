@@ -19,12 +19,13 @@ const Projects = () => {
     projectName,
     projectIndex
   ) => {
-    const projectObj = Project(
-      projectName,
-      projectIndex
-    );
-  
-    return projects.push(projectObj);
+    if (projectName.length >= 4) {
+      const projectObj = Project(
+        projectName,
+        projectIndex
+      );
+      return projects.push(projectObj);
+    }
   };
 
   const getProjectsLength = () => {
@@ -35,7 +36,7 @@ const Projects = () => {
     return projects.at(index);
   };
 
-  const getProjects = () => [...projects];
+  const revealProjects = () => [...projects];
 
   const dereferProjectItem = (index) => {
     return projects.splice(
@@ -49,8 +50,8 @@ const Projects = () => {
     getProjectsItem,
     addProject, 
     getProjectsLength,
-    getProjects,
     dereferProjectItem,
+    revealProjects,
   };
 };
 
