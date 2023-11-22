@@ -6,6 +6,7 @@ const Todos = (
   priority,
   dueDate,
   index,
+  ProjectThisTodoIsCreated,
 ) => {
   'use strict';
 
@@ -15,6 +16,7 @@ const Todos = (
     priority,
     dueDate,
     index,
+    ProjectThisTodoIsCreated,
   };
 };
 
@@ -131,6 +133,7 @@ const TodoLists = function TodoListsArrayContainerAndMethodsToGetItemAndDerefer(
     priority,
     dueDate,
     index,
+    ProjectThisTodoIsCreated,
   ) => {
     if (title.length >= 4) {
       const todoList = Todos(
@@ -139,6 +142,7 @@ const TodoLists = function TodoListsArrayContainerAndMethodsToGetItemAndDerefer(
         priority,
         dueDate,
         index,
+        ProjectThisTodoIsCreated
       );
       return todoLists.push(todoList);
     }
@@ -147,6 +151,8 @@ const TodoLists = function TodoListsArrayContainerAndMethodsToGetItemAndDerefer(
   const getTodoListsLength = () => {
     return todoLists.length;
   };
+
+  const revealTodoLists = () => [...todoLists];
 
   const getTodoListsItem = (index) => {
     return todoLists.at(index);
@@ -165,6 +171,7 @@ const TodoLists = function TodoListsArrayContainerAndMethodsToGetItemAndDerefer(
     getTodoListsItem,
     dereferTodoListsItem,
     getTodoListsLength,
+    revealTodoLists,
   }
 };
 
