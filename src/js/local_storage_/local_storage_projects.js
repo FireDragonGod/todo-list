@@ -1,3 +1,5 @@
+'use strict';
+
 const StoreProjectInLocalStorage = () => {
   const projectStoringInLocalStorage = (
     projectKey,
