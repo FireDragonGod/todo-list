@@ -1,12 +1,24 @@
+// images
 import add from '../../assets/img/add_FILL0_wght400_GRAD0_opsz24.svg';
 import close from '../../assets/img/close_FILL0_wght400_GRAD0_opsz24_copy.svg';
-import { todoLists } from '../create_todo/todo_create';
-import { appendWithObjectLengthCondition } from '../create_todo/conditional_append';
+
+// Application Logic
 import { updateTodoValues } from '../create_todo/update_todo';
+import { todoItem } from '../create_html_files/create_todo_item';
+
+// logic 
+import { appendWithObjectLengthCondition } from '../create_todo/conditional_append';
+import { 
+  dates, 
+  colorConvert, 
+  todoLists
+} from '../create_todo/todo_create';
+
+// storage
+import { setTodoInLocalStorage } from '../local_storage_/local_storage_todoLists';
+
 
 class ProjectOnTheMainContent {
-
-  createHTMLTodoItem() {};
 
   representProjectName(
     projectNameContent,
@@ -95,63 +107,187 @@ class ProjectOnTheMainContent {
     const dueDate = document.createElement('input');
     const submit = document.createElement('button');
   
+    // it's easer to read it this way
     labelTitle.textContent = 'Title: ';
-    labelTitle.setAttribute('for', 'task_name');
-    title.setAttribute('type', 'text');
-    title.setAttribute('name', 'task_name');
-    title.setAttribute('id', 'task_name');
-    title.setAttribute('placeholder', 'todo-list');
-    title.setAttribute('minlength', '4');
-    title.setAttribute('maxlength', '60');
-    title.setAttribute('required', '');
+    labelTitle.setAttribute(
+      'for', 
+      'task_name'
+    );
+    title.setAttribute(
+      'type', 
+      'text'
+    );
+    title.setAttribute(
+      'name', 
+      'task_name'
+    );
+    title.setAttribute(
+      'id', 
+      'task_name'
+    );
+    title.setAttribute(
+      'placeholder', 
+      'todo-list'
+    );
+    title.setAttribute(
+      'minlength', 
+      '4'
+    );
+    title.setAttribute(
+      'maxlength', 
+      '60'
+    );
+    title.setAttribute(
+      'required', 
+      ''
+    );
 
     labelDescription.textContent = 'Description: '
-    labelDescription.setAttribute('for', 'task_description');
-    description.setAttribute('type', 'text');
-    description.setAttribute('name', 'task_description');
-    description.setAttribute('minlength', '');
-    description.setAttribute('maxlength', '120');
-    description.setAttribute('id', 'task_description');
-    description.setAttribute('placeholder', 'Provide more info about the task')
+    labelDescription.setAttribute(
+      'for', 
+      'task_description'
+    );
+    description.setAttribute(
+      'type', 
+      'text'
+    );
+    description.setAttribute(
+      'name', 
+      'task_description'
+    );
+    description.setAttribute(
+      'minlength', 
+      ''
+    );
+    description.setAttribute(
+      'maxlength', 
+      '120'
+    );
+    description.setAttribute(
+      'id', 
+      'task_description'
+    );
+    description.setAttribute(
+      'placeholder', 
+      'Provide more info about the task')
 
     priority.textContent = 'Priority Level: ';
 
     labelLow.textContent = 'Low Priority'
-    labelLow.setAttribute('for', 'low_priority');
-    low.setAttribute('type', 'radio');
-    low.setAttribute('id', 'low_priority');
-    low.setAttribute('name', 'priority_level');
-    low.setAttribute('value', 'low_priority');
-    low.setAttribute('checked', '');
+    labelLow.setAttribute(
+      'for', 
+      'low_priority'
+    );
+    low.setAttribute(
+      'type', 
+      'radio'
+    );
+    low.setAttribute(
+      'id', 
+      'low_priority'
+    );
+    low.setAttribute(
+      'name', 
+      'priority_level'
+    );
+    low.setAttribute(
+      'value', 
+      'low_priority'
+    );
+    low.setAttribute(
+      'checked', 
+      ''
+    );
 
     labelMedium.textContent = 'Medium Priority';
-    labelMedium.setAttribute('for', 'medium_priority');
-    medium.setAttribute('type', 'radio');
-    medium.setAttribute('id', 'medium_priority');
-    medium.setAttribute('name', 'priority_level');
-    medium.setAttribute('value', 'medium_priority');
+    labelMedium.setAttribute(
+      'for', 
+      'medium_priority'
+    );
+    medium.setAttribute(
+      'type', 
+      'radio'
+    );
+    medium.setAttribute(
+      'id', 
+      'medium_priority'
+    );
+    medium.setAttribute(
+      'name', 
+      'priority_level'
+    );
+    medium.setAttribute(
+      'value', 
+      'medium_priority'
+    );
 
     labelHigh.textContent = 'High Priority';
-    labelHigh.setAttribute('for', 'high_priority');
-    high.setAttribute('type', 'radio');
-    high.setAttribute('id', 'high_priority');
-    high.setAttribute('name', 'priority_level');
-    high.setAttribute('value', 'high_priority');
+    labelHigh.setAttribute(
+      'for', 
+      'high_priority'
+    );
+    high.setAttribute(
+      'type', 
+      'radio'
+    );
+    high.setAttribute(
+      'id', 
+      'high_priority'
+    );
+    high.setAttribute(
+      'name', 
+      'priority_level'
+    );
+    high.setAttribute(
+      'value', 
+      'high_priority'
+    );
     
     labelDueDate.textContent = 'Due Date: ';
-    labelDueDate.setAttribute('for', 'due_date');
-    dueDate.setAttribute('type', 'date');
-    dueDate.setAttribute('name', 'due_date');
-    dueDate.setAttribute('id', 'due_date');
-    dueDate.setAttribute('min', ``);
-    dueDate.setAttribute('max', '2100-12-31');
-    dueDate.setAttribute('value', `2023-11-06`);
+    labelDueDate.setAttribute(
+      'for', 
+      'due_date'
+    );
+    dueDate.setAttribute(
+      'type', 
+      'date'
+    );
+    dueDate.setAttribute(
+      'name', 
+      'due_date'
+    );
+    dueDate.setAttribute(
+      'id', 
+      'due_date'
+    );
+    dueDate.setAttribute(
+      'min', ``
+    );
+    dueDate.setAttribute(
+      'max', 
+      '2100-12-31'
+    );
+    dueDate.setAttribute(
+      'value', `2023-11-06`
+    );
 
-    labelSubmit.setAttribute('for', 'submit_todo');
+    labelSubmit.setAttribute(
+      'for', 
+      'submit_todo'
+    );
     submit.textContent = 'Submit'
-    submit.setAttribute('id', 'submit_todo');
-    submit.setAttribute('name', 'submit_todo');
-    submit.setAttribute('type', 'submit');
+    submit.setAttribute(
+      'id', 
+      'submit_todo'
+    );
+    submit.setAttribute(
+      'name', 
+      'submit_todo'
+    );
+    submit.setAttribute(
+      'type', 
+      'submit'
+    );
 
     let priorityLevelStore = 'low_priority';
 
@@ -175,24 +311,48 @@ class ProjectOnTheMainContent {
       (event) => {
         event.preventDefault();
         const justBelowTheButton = document.querySelector(`div[data-key="${dataKey}"] > div`);
+        const todoListLength = todoLists.getTodoListsLength();
 
         todoLists.addTodoLists(
           title.value,
           description.value,
           priorityLevelStore,
           dueDate.value !== '' ?  dueDate.value : '2023-11-06',
-          todoLists.getTodoListsLength(),
+          todoListLength,
+          dataKey,
         );
+
+        const todoListsProperty = todoLists.getTodoListsItem(-1);
+        const countValue = todoListsProperty.index;
+        const titleValue = todoListsProperty.title;
+        const descriptionValue = todoListsProperty.description;
+        const priorityValue = todoListsProperty.priority;
+        const dueDateValue = todoListsProperty.dueDate;
+        const projectThisTodoWasCreated = todoListsProperty.ProjectThisTodoIsCreated;
+        const colorBasedPriority = colorConvert.priorityConvert(priorityValue);
+        const formattedDate = dates.formatDate(dueDateValue);
 
         appendWithObjectLengthCondition.appendIfConditionsWereSatisfied(
           title.value.length,
-          justBelowTheButton, 
-          event,
-          dialog,
+          justBelowTheButton,
+          event, 
+          dialog, 
+          todoLists.getTodoListsLength(),
+          todoItem.createTodoItem( 
+            countValue,
+            colorBasedPriority,
+            titleValue,
+            formattedDate,
+            descriptionValue,
+            priorityValue,
+            projectThisTodoWasCreated,
+          ),
         );
 
+        // Add priorityclassListItem so when checking the radio button it doesn't affect the color priority that toggles the default on submition
         updateTodoValues.addPriorityClassListsItem(priorityLevelStore);
 
+        // ? Reset all input values on submit
         title.value = '';
         description.value = '';
         priorityLevelStore = 'low_priority';
@@ -212,7 +372,9 @@ class ProjectOnTheMainContent {
         
         // default radio checked 
         low.checked = 1;
+        // reset input ends here
 
+        setTodoInLocalStorage.settingTodoInLocalStorage(todoLists.revealTodoLists());
       }
     );
 
@@ -275,10 +437,30 @@ class ProjectOnTheMainContent {
       ]
     );
     
-    appendMultipleChildren(liPriority, [priority]);
-    appendMultipleChildren(liLow, [low, labelLow]);
-    appendMultipleChildren(liMedium, [medium, labelMedium, ])
-    appendMultipleChildren(liHigh, [high, labelHigh, ])
+    appendMultipleChildren(
+      liPriority, 
+      [priority],
+    );
+    appendMultipleChildren(
+      liLow, [
+        low,
+        labelLow
+      ]
+    );
+    appendMultipleChildren(
+      liMedium,
+      [
+        medium,
+        labelMedium,
+      ]
+    );
+    appendMultipleChildren(
+      liHigh,
+      [
+        high,
+        labelHigh, 
+      ]
+    );
 
     appendMultipleChildren(
       liSubmit, 
