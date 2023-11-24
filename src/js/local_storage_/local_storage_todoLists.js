@@ -1,12 +1,9 @@
 'use strict';
 
 const SetTodoInLocalStorage = () => {
-  const settingTodoInLocalStorage = (
-    todoKey,
-    todoValue,
-  ) => {
+  const settingTodoInLocalStorage = (todoValue) => {
     return localStorage.setItem(
-      `Todo ${todoKey}`,
+      'Todo',
       JSON.stringify(todoValue),
     );
   };
@@ -19,16 +16,12 @@ export const setTodoInLocalStorage = SetTodoInLocalStorage();
 
 
 const GetTodoItemFromLocalStorage = () => {
-  const todoListed = [];
 
   const gettingTodoItemFromLocalStorage = () => {
-    for (let index = 0; index < localStorage.length; index++) {
-      const parsedTodoListJson = JSON.parse(localStorage.getItem(`Todo ${index}`))
-      todoListed.push(parsedTodoListJson);
-    };
+    return JSON.parse(localStorage.getItem('Todo'));
   };
+
   return {
-    todoListed,
     gettingTodoItemFromLocalStorage,
   };
 };
