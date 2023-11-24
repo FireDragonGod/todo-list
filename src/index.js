@@ -1,21 +1,33 @@
-import './assets/css/style.css';
-import { formf } from './js/create_project/Form';
-import { htmlElement } from './js/create_project/pusher';
-import { projectLists } from './js/create_project/create_project';
-import { conditionAppending } from './js/create_project/conditional_append';
+'use strict';
 
-import { today } from './js/create_html_files/today';
-import { thisWeek } from './js/create_html_files/this_week';
+// styles
+import './assets/css/style.css';
+
+// Application 
+import { formf } from './js/create_project/Form';
 import { mainContent } from './js/create_html_files/todo_with_form';
 import { blankContent } from './js/create_html_files/blank';
-import { localStorageProjects } from './js/local_storage_/local_storage_projects';
+import { ListOfProjectForDom } from './js/create_html_files/create_project_aside';
 
-// time used on copyright c then year
-const fullYear = new Date().getFullYear();
-const aCopyRigh = document.querySelector('a[data-copyright-year]').textContent = `${fullYear}`;
+// Logic
+import { conditionAppending } from './js/create_project/conditional_append';
+import { projectLists } from './js/create_project/create_project';
+import { 
+  getProjectsFromLocalStorage,
+  storingProjectsInLocalStorage,
+} from './js/local_storage_/local_storage_projects';
+import { getTodoItemFromLocalStorage } from './js/local_storage_/local_storage_todoLists';
+import { colorConvert, todoLists } from './js/create_todo/todo_create';
+import { todoItem } from './js/create_html_files/create_todo_item';
 
+const copyrightYear = document.querySelector('a[data-copyright-year]').textContent = `${new Date().getFullYear()}`;
 const addProjectButton = document.querySelector('button.add_project_button');
+const cancel = document.querySelector('.cancel');
+const save = document.querySelector('.save');
+const content = document.querySelector('#context_content');
 const form = document.querySelector('.formList');
+
+content.appendChild(blankContent.blankContentForContextContent(0));
 
 addProjectButton.addEventListener(
   'click',
@@ -31,14 +43,11 @@ addProjectButton.addEventListener(
   }
 );
 
-const cancel = document.querySelector('.cancel');
-
 cancel.addEventListener(
   'click',
   (event) => {
 
     const input = document.querySelector('input#project_name');
-
     const eventClasList = event.target.classList.value;
 
     formf.formToggling(
@@ -51,41 +60,6 @@ cancel.addEventListener(
     input.value = '';
   }
 );
-
-const todayButton = document.querySelector('button.today_button');
-const thisWeekButton = document.querySelector('button.date_range_button');
-const content = document.querySelector('#context_content');
-
-content.appendChild(today.createHTMLElementsForToday(0));
-content.appendChild(thisWeek.createHTMLElementsForThisWeek(0));
-content.appendChild(blankContent.blankContentForContextContent(0))
-
-const homeButtons = [
-  todayButton,
-  thisWeekButton,
-];
-
-homeButtons.forEach(element => {
-  
-  element.addEventListener(
-    'click',
-    (event) => {
-
-      const eventClasListValue = event.target.classList.value;
-      htmlElement.elementPusher(eventClasListValue);
-
-      const lastElement = document.querySelector(`${htmlElement.getLastElement()}`);
-      const secondToTheLastElement = document.querySelector(`${htmlElement.getSecondToTheLastElement()}`);
-
-
-      lastElement.classList.toggle('hide');
-      secondToTheLastElement.classList.toggle('hide');
-    }
-  );
-});
-
-const save = document.querySelector('.save');
-
 
 save.addEventListener(
   'click',
@@ -106,22 +80,25 @@ save.addEventListener(
       form,
     );
 
-    formf.formInputSave(
+    projectLists.addProject(
       input.value,
       countF,
-      inputLength
     );
 
-    localStorageProjects.localStorageProjectsSetter();
-    localStorageProjects.localProjectArrayPusherToLocalStorageProjects();
+    const projectName = projectLists.getProjectsItem(-1).projectName;
+    const projectIndex = projectLists.getProjectsItem(-1).projectIndex;
 
-    conditionAppending.appendding(
+    conditionAppending.projectOnAside(
       projects,
       countF + 1,
       input,
+      ListOfProjectForDom.AppendListChildren(
+        projectName,
+        projectIndex,
+      ),
     );
 
-    conditionAppending.appenddingNew(
+    conditionAppending.projectContent(
       content,
       mainContent.representProjectName(
         input.value,
@@ -130,7 +107,105 @@ save.addEventListener(
       inputLength,
     );
 
+    storingProjectsInLocalStorage.projectStoringInLocalStorage(projectLists.revealProjects());
     input.value = '';
   }
 );
 
+const populateProjectFromLocalStorage = () => {
+  const locationToPopulate = document.querySelector('ul.projects');
+
+  const populateProjectsOnAside = (projectFromLocalStorage) => {
+    for (let index = 0; index < projectFromLocalStorage.length; index++) {
+      const element = projectFromLocalStorage[index];
+      if (element !== null) {
+        projectLists.addProject(
+          element.projectName,
+          element.projectIndex,
+        );
+
+        locationToPopulate.appendChild(ListOfProjectForDom.AppendListChildren(
+          element.projectName,
+          element.projectIndex,
+        ));
+
+        content.appendChild(mainContent.representProjectName(
+          element.projectName,
+          element.projectIndex,
+        ));
+      }
+      if (element === null) {
+        projectLists.dereferProjectItem(index);
+      }
+    }
+  };
+
+  return {
+    populateProjectsOnAside,
+  };
+};
+
+
+const todoItemForDom = () => {
+  const todoListItemAdderGettingItFromLocalStorage = (todoItemFromLocalStorage) => {
+    for (let index = 0; index < todoItemFromLocalStorage.length; index++) {
+      const todoItem = todoItemFromLocalStorage[index];
+      if (todoItem !== null) {
+        todoLists.addTodoLists(
+          todoItem.title,
+          todoItem.description,
+          todoItem.priority,
+          todoItem.dueDate,
+          todoItem.index,
+          todoItem.ProjectThisTodoIsCreated,
+        )
+      }
+      if (todoItem === null) {
+        todoLists.dereferTodoListsItem(index);
+      }
+    }
+  };
+
+  const populateTodoListItemBelongingToTheirRespectiveProjectItem = () => {
+    const revealedTodoListsItems = todoLists.revealTodoLists();
+    revealedTodoListsItems.forEach((element) => {
+      if (element !== null) {
+        const justBelowTheButton = document.querySelector(`div[data-key="${element.ProjectThisTodoIsCreated}"] > div`);
+        if (justBelowTheButton === null) {
+          todoLists.dereferTodoListsItem(element.index);
+        }
+        if (justBelowTheButton !== null) {
+          justBelowTheButton.appendChild(todoItem.createTodoItem(
+            element.index,
+            colorConvert.priorityConvert(element.priority),
+            element.title,
+            element.dueDate,
+            element.description,
+            element.priority,
+            element.ProjectThisTodoIsCreated,
+          ))
+        }
+      }
+    });
+  };
+
+  return {
+    todoListItemAdderGettingItFromLocalStorage,
+    populateTodoListItemBelongingToTheirRespectiveProjectItem,
+  };
+};
+
+
+window.addEventListener(
+  'load',
+  () => {
+    // populate projects on aside section
+    const projectsFromLocalStorage = getProjectsFromLocalStorage.projectFromLocalStorageGetter();
+    const populateProjects = populateProjectFromLocalStorage();
+    populateProjects.populateProjectsOnAside(projectsFromLocalStorage === null ? [] : projectsFromLocalStorage);
+
+    // populate todo item on their respective project location
+    const todoItemPopulator = todoItemForDom();
+    todoItemPopulator.todoListItemAdderGettingItFromLocalStorage(getTodoItemFromLocalStorage.gettingTodoItemFromLocalStorage() === null ? [] : getTodoItemFromLocalStorage.gettingTodoItemFromLocalStorage());
+    todoItemPopulator.populateTodoListItemBelongingToTheirRespectiveProjectItem();
+});
