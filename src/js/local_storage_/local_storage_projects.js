@@ -1,12 +1,9 @@
 'use strict';
 
 const StoreProjectInLocalStorage = () => {
-  const projectStoringInLocalStorage = (
-    projectKey,
-    projectValue
-  ) => {
+  const projectStoringInLocalStorage = (projectValue) => {
     localStorage.setItem(
-      `Project ${projectKey}`,
+      'Project',
       JSON.stringify(projectValue)
     );
   };
@@ -18,17 +15,13 @@ const StoreProjectInLocalStorage = () => {
 export const storingProjectsInLocalStorage = StoreProjectInLocalStorage();
 
 const GetProjectsFromLocalStorage = () => {
-  const projectsFromLocalStorage = [];
 
   const projectFromLocalStorageGetter = () => {
-    for (let index = 0; index < localStorage.length; index++) {
-      const parsedProjectItemsFromLocalStorage = JSON.parse(localStorage.getItem(`Project ${index}`));
-      projectsFromLocalStorage.push(parsedProjectItemsFromLocalStorage);
-    }
+    return JSON.parse(localStorage.getItem('Project'));
   };
+
   return {
     projectFromLocalStorageGetter,
-    projectsFromLocalStorage,
   };
 };
 
