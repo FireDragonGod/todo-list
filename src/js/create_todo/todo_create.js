@@ -72,14 +72,18 @@ const Dates = () => {
   const formatDate = (newDate) => {
 
     const formDateValues = formatFormDateValues(newDate);
-    const parseDateValues = parseDate(formDateValues.yearString, formDateValues.monthString, formDateValues.dayString);
+
+    const parseDateValues = parseDate(
+      formDateValues.yearString, 
+      formDateValues.monthString, 
+      formDateValues.dayString,
+    );
 
     const year = parseDateValues.year;
     const month = parseDateValues.month;
     const day = parseDateValues.day;
 
-
-    return format(new Date(year, (month - 1), day), 'MM/dd/yyyy');
+    return format(new Date(year, (month - 1), day), 'MM/dd/yyyy'); 
   };
 
   return {
@@ -95,7 +99,7 @@ const convertColor = function convertPriorityIntoColorBasedOnHowImportantItIs() 
   const colors = [
     'green',
     'yellow', 
-    'orange'
+    'orange',
   ];
 
   const priorityConvert = (priority) => {
@@ -142,7 +146,7 @@ const TodoLists = function TodoListsArrayContainerAndMethodsToGetItemAndDerefer(
         priority,
         dueDate,
         index,
-        ProjectThisTodoIsCreated
+        ProjectThisTodoIsCreated,
       );
       return todoLists.push(todoList);
     }
