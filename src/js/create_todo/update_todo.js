@@ -1,8 +1,15 @@
 import { todoLists, dates, matchValue, colorConvert } from "./todo_create";
+import { setTodoInLocalStorage } from "../local_storage_/local_storage_todoLists";
 
 const TodoValue = () => {
   'use strict';
-  const todoValueSet = (title, description, priority, dueDate, index ) => {
+  const todoValueSet = (
+    title,
+    description, 
+    priority, 
+    dueDate, 
+    index
+  ) => {
     if (title.length >= 4) {
       const todoListsSet = todoLists.getTodoListsItem(index);
       todoListsSet.title = title;
@@ -19,7 +26,7 @@ const TodoValue = () => {
 
 export const todoValue = TodoValue();
 
-const UpdateTodoValues  = () => {
+const updateTodoValues  = () => {
   'use strict';
 
   const priorityclassListValues = [];
@@ -30,9 +37,18 @@ const UpdateTodoValues  = () => {
     highInputRadio,
     priorityValue
   ) => {
-    lowInputRadio.checked = matchValue.match('low_priority', priorityValue);
-    mediumInputRadio.checked = matchValue.match('medium_priority', priorityValue);
-    highInputRadio.checked = matchValue.match('high_priority', priorityValue)
+    lowInputRadio.checked = matchValue.match(
+      'low_priority', 
+      priorityValue,
+    );
+    mediumInputRadio.checked = matchValue.match(
+      'medium_priority', 
+      priorityValue,
+    );
+    highInputRadio.checked = matchValue.match(
+      'high_priority', 
+      priorityValue,
+    );
   }
 
   const textInputType = (
@@ -67,7 +83,7 @@ const UpdateTodoValues  = () => {
     elementToChangeDueDate.textContent = `${formattedDate}`;
   };
 
-  const conditionValues = (
+  const conditionValuesBeforeMakingChangesToThem = (
     event,
     title,
     dataKey,
@@ -83,13 +99,12 @@ const UpdateTodoValues  = () => {
     inputHighRadio,
     inputToChangeDueDate,
   ) => {
-    priorityclassListValues.push(priorityLevelStore);
-
     if (title.length >= 4) {
+      setTodoInLocalStorage.settingTodoInLocalStorage(todoLists.revealTodoLists());
+      priorityclassListValues.push(priorityLevelStore);
       event.preventDefault();
 
       const todoItem = todoLists.getTodoListsItem(dataKey);
-
       const todoItemTitle = todoItem.title;
       const todoItemDescription = todoItem.description;
       const todoItemPriority = todoItem.priority;   
@@ -142,11 +157,11 @@ const UpdateTodoValues  = () => {
   };
 
   return {
-    conditionValues,
+    conditionValuesBeforeMakingChangesToThem,
     getPriorityClasListsItem,
     addPriorityClassListsItem,
   };
 };
 
 
-export const updateTodoValues = UpdateTodoValues();
+export const updatingTodoValues = updateTodoValues();
