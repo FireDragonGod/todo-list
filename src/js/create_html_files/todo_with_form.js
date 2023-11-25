@@ -3,13 +3,12 @@ import add from '../../assets/img/add_FILL0_wght400_GRAD0_opsz24.svg';
 import close from '../../assets/img/close_FILL0_wght400_GRAD0_opsz24_copy.svg';
 
 // Application Logic
-import { updateTodoValues } from '../create_todo/update_todo';
+import { updatingTodoValues } from '../create_todo/update_todo';
 import { todoItem } from '../create_html_files/create_todo_item';
 
 // logic 
 import { appendWithObjectLengthCondition } from '../create_todo/conditional_append';
-import { 
-  dates, 
+import {  
   colorConvert, 
   todoLists
 } from '../create_todo/todo_create';
@@ -44,13 +43,10 @@ class ProjectOnTheMainContent {
 
     todoAddButtonToShowForm.textContent = 'Add Todo';
 
-    todoAddButtonToShowForm.addEventListener(
-      'click',
-      (event) => {
-        const formWithDataKey = document.querySelector(`dialog[data-key="${dataKey}"]`);
-        formWithDataKey.showModal();
-      }
-    );
+    todoAddButtonToShowForm.addEventListener('click', () => {
+      const formWithDataKey = document.querySelector(`dialog[data-key="${dataKey}"]`);
+      formWithDataKey.showModal();
+    });
 
     projectName.textContent = `${projectNameContent}`;
     projectNameWrapper.classList.add('hide');
@@ -297,98 +293,85 @@ class ProjectOnTheMainContent {
       high
     ].forEach((element) => {
     
-      element.addEventListener(
-        'change',
-        (event) => {
-          priorityLevelStore = event.target.value;
-        }
-      )
-    })
+      element.addEventListener('change', (event) => {
+        priorityLevelStore = event.target.value;
+      });
+    });
 
     // create todo via submit form
-    submit.addEventListener(
-      'click',
-      (event) => {
-        event.preventDefault();
-        const justBelowTheButton = document.querySelector(`div[data-key="${dataKey}"] > div`);
-        const todoListLength = todoLists.getTodoListsLength();
+    submit.addEventListener('click', (event) => {
+      event.preventDefault();
+      const justBelowTheButton = document.querySelector(`div[data-key="${dataKey}"] > div`);
+      const todoListLength = todoLists.getTodoListsLength();
 
-        todoLists.addTodoLists(
-          title.value,
-          description.value,
-          priorityLevelStore,
-          dueDate.value !== '' ?  dueDate.value : '2023-11-06',
-          todoListLength,
-          dataKey,
-        );
+      todoLists.addTodoLists(
+        title.value,
+        description.value,
+        priorityLevelStore,
+        dueDate.value !== '' ?  dueDate.value : '2023-11-06',
+        todoListLength,
+        dataKey,
+      );
 
-        const todoListsProperty = todoLists.getTodoListsItem(-1);
-        const countValue = todoListsProperty.index;
-        const titleValue = todoListsProperty.title;
-        const descriptionValue = todoListsProperty.description;
-        const priorityValue = todoListsProperty.priority;
-        const dueDateValue = todoListsProperty.dueDate;
-        const projectThisTodoWasCreated = todoListsProperty.ProjectThisTodoIsCreated;
-        const colorBasedPriority = colorConvert.priorityConvert(priorityValue);
-        const formattedDate = dates.formatDate(dueDateValue);
+      const todoListsProperty = todoLists.getTodoListsItem(-1);
+      const countValue = todoListsProperty.index;
+      const titleValue = todoListsProperty.title;
+      const descriptionValue = todoListsProperty.description;
+      const priorityValue = todoListsProperty.priority;
+      const dueDateValue = todoListsProperty.dueDate;
+      const projectThisTodoWasCreated = todoListsProperty.ProjectThisTodoIsCreated;
+      const colorBasedPriority = colorConvert.priorityConvert(priorityValue);
 
-        appendWithObjectLengthCondition.appendIfConditionsWereSatisfied(
-          title.value.length,
-          justBelowTheButton,
-          event, 
-          dialog, 
-          todoLists.getTodoListsLength(),
-          todoItem.createTodoItem( 
-            countValue,
-            colorBasedPriority,
-            titleValue,
-            formattedDate,
-            descriptionValue,
-            priorityValue,
-            projectThisTodoWasCreated,
-          ),
-        );
+      appendWithObjectLengthCondition.appendIfConditionsWereSatisfied(
+        title.value.length,
+        justBelowTheButton,
+        event, 
+        dialog, 
+        todoLists.getTodoListsLength(),
+        todoItem.createTodoItem( 
+          countValue,
+          colorBasedPriority,
+          titleValue,
+          dueDateValue,
+          descriptionValue,
+          priorityValue,
+          projectThisTodoWasCreated,
+        ),
+      );
 
-        // Add priorityclassListItem so when checking the radio button it doesn't affect the color priority that toggles the default on submition
-        updateTodoValues.addPriorityClassListsItem(priorityLevelStore);
+      // Add priorityclassListItem so when checking the radio button it doesn't affect the color priority that toggles the default on submition
+      updatingTodoValues.addPriorityClassListsItem(priorityLevelStore);
+      // ? Reset all input values on submit
+      title.value = '';
+      description.value = '';
+      priorityLevelStore = 'low_priority';
+      dueDate.value = '2023-11-06';
 
-        // ? Reset all input values on submit
-        title.value = '';
-        description.value = '';
-        priorityLevelStore = 'low_priority';
-        dueDate.value = '2023-11-06';
-        
-        const radios = [
-          medium,
-          high,
-        ];
+      const radios = [
+        medium,
+        high,
+      ];
+      radios.forEach((
+        element,
+        ) => {
+          element.checked = 0;
+        }
+      );
 
-        radios.forEach((
-          element,
-          ) => {
-            element.checked = 0;
-          }
-        );
-        
-        // default radio checked 
-        low.checked = 1;
-        // reset input ends here
-
-        setTodoInLocalStorage.settingTodoInLocalStorage(todoLists.revealTodoLists());
-      }
-    );
+      // default radio checked 
+      low.checked = 1;
+      // reset input ends here
+      setTodoInLocalStorage.settingTodoInLocalStorage(todoLists.revealTodoLists());
+    });
 
     dialog.appendChild(form);
     form.appendChild(ul);
     liImg.appendChild(closeImg);
 
-    closeImg.addEventListener(
-      'click',
-      (event) => {
-        const form = document.querySelector(`dialog[data-key='${dataKey}']`);
-        form.close();
-      }
-    );
+    closeImg.addEventListener('click', () => {
+      const form = document.querySelector(`dialog[data-key='${dataKey}']`);
+      form.close();
+    });
     
     function appendMultipleChildren(
       parent, 
@@ -399,76 +382,57 @@ class ProjectOnTheMainContent {
       })
     };
     
-    appendMultipleChildren(
-      ul, 
-      [
-        liImg,
-        liTitle,
-        liDescription,
-        liPriority,
-        liLow,
-        liMedium,
-        liHigh,
-        liDueDate,
-        liSubmit,
-      ]
-    );
+    appendMultipleChildren(ul, [
+      liImg,
+      liTitle,
+      liDescription,
+      liPriority,
+      liLow,
+      liMedium,
+      liHigh,
+      liDueDate,
+      liSubmit,
+    ]);
 
-    appendMultipleChildren(
-      liTitle, 
-      [
-        labelTitle, 
-        title
-      ]
-    );
-    appendMultipleChildren(
-      liDescription, 
-      [
-        labelDescription, 
-        description
-      ]
-    );
-    
-    appendMultipleChildren(
-      liDueDate, 
-      [
-        labelDueDate, 
-        dueDate
-      ]
-    );
-    
-    appendMultipleChildren(
-      liPriority, 
+    appendMultipleChildren(liTitle, [
+      labelTitle, 
+      title
+    ]);
+
+    appendMultipleChildren(liDescription, [
+      labelDescription, 
+      description
+    ]);
+
+    appendMultipleChildren(liDueDate, [
+      labelDueDate, 
+      dueDate
+    ]);
+
+    appendMultipleChildren(liPriority, 
       [priority],
     );
-    appendMultipleChildren(
-      liLow, [
-        low,
-        labelLow
-      ]
-    );
-    appendMultipleChildren(
-      liMedium,
-      [
-        medium,
-        labelMedium,
-      ]
-    );
-    appendMultipleChildren(
-      liHigh,
-      [
-        high,
-        labelHigh, 
-      ]
-    );
 
-    appendMultipleChildren(
-      liSubmit, 
-      [
-        labelSubmit, 
-        submit
-      ]
-    );
+    appendMultipleChildren(liLow, [
+      low,
+      labelLow
+    ]);
+
+    appendMultipleChildren(liMedium,[
+      medium,
+      labelMedium,
+    ]);
+
+    appendMultipleChildren(liHigh, [
+      high,
+      labelHigh, 
+    ]);
+
+    appendMultipleChildren(liSubmit, [
+      labelSubmit, 
+      submit
+    ]);
+
     return dialog;
   };
 };
